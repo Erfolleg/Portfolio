@@ -1,0 +1,39 @@
+include ./mixins.pug
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Portfolio | main page
+  body
+    .wrapper
+      .maincontent
+        .container
+          .fullscreen-section
+            .header
+              .initials ХБ
+              nav.menu_header
+                ul.list_menu
+                  li.item_menu Главная
+                  li.item_menu Обо мне
+                  li.item_menu Навыки
+                  li.item_menu Работы
+                  li.item_menu Отзывы
+                  li.item_menu Связаться
+              .social
+                a.link_social(href="#")
+                  .link-insta.link
+                a.link_social(href="#")
+                  .link-vk.link
+                a.link_social(href="#")
+                  .link-github.link
+            .content_main
+              .main_title 
+                .title-desc Личный сайт веб разработчика
+                .title Булат Хисаев
+              button.scroll
+                .scroll-down Скролл
+                .scroll-down_icon
+          .fullscreen-section
