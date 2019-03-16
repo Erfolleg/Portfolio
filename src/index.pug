@@ -10,61 +10,62 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        .container
-          .fullscreen-section
-            .header
-              .initials ХБ
-              nav.menu_header
-                ul.list_menu
-                  li.item_menu Главная
-                  li.item_menu Обо мне
-                  li.item_menu Навыки
-                  li.item_menu Работы
-                  li.item_menu Отзывы
-                  li.item_menu Связаться
-              .social
-                a.link_social(href="#")
-                  .link-insta.link
-                a.link_social(href="#")
-                  .link-vk.link
-                a.link_social(href="#")
-                  .link-github.link
-            .content_main
-              .main_title 
-                .title-desc Личный сайт веб разработчика
-                .title Булат Хисаев
-              button.scroll
-                .scroll-down Скролл
-                .scroll-down_icon
-          .fullscreen-section
-            .about-me
-              .about-me_user
-                .about-me_user-pic
-                  +image('content/user.jpg', 'user-pic')
-                .about-me_user-desc
-                  .about-me_text-user-hi Привет, меня зовут
-                  .about-me_text-user-title Хисаев Булат
-                  .about-me_text-user-work Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-              .about-me_pic *
-              .about-me_text
-                .about-me_text-user
-                  ul.about-me_desc-list
-                    li.about-me_desc-item Проживаю:
-                    li.about-me_desc-item Возраст:
-                    li.about-me_desc-item Родился:
-                  ul.about-me_desc-list
-                    li.about-me_desc-item Уфа
-                    li.about-me_desc-item 30 лет
-                    li.about-me_desc-item 6 ноября 1988
-                .about-me_text-desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-        .fullscreen-section
-          .useful
-            .useful-pic
-               +image('content/Backpack.png', 'useful-pic_img')
-            .useful-content
-              .useful-content_text
-                .useful_title Чем я могу быть полезен вам
-                .useful_text
-              .useful-content_diagramm
-                .diagramm-frontend
-                .diagramm-workflow
+        .welcome-section
+          section.hero
+            .container.hero__container
+              header.header
+                .logo ХБ
+                .header__menu
+                  nav.nav 
+                    ul.nav__list
+                      - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'];
+                      each item in menu
+                        li.nav__item
+                          a(href="").nav__link #{item}
+                .header__links
+                  ul.socials 
+                    - var socials = ['insta', 'vk', 'github'];
+                    each item in socials  
+                      li.socials__item
+                        a(href="").socials__link
+                          +icon(`${item}`, 'socials__icon')
+              .hero__content
+                .user-info.user-info__content
+                  .user-info__desc Личный сайт веб разработчика
+                  .user-info__name Булат Хисаев
+              .hero__bottom-buttons
+                .scroll-down-button Скролл
+                  +icon(`scroll`, 'scroll-down-button__icon')
+              
+        //-   .fullscreen-section
+        //-     .about-me
+        //-       .about-me_user
+        //-         .about-me_user-pic
+        //-           //- +image('', 'user-pic')
+        //-         .about-me_user-desc
+        //-           .about-me_text-user-hi Привет, меня зовут
+        //-           .about-me_text-user-title Хисаев Булат
+        //-           .about-me_text-user-work Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+        //-       .about-me_pic *
+        //-       .about-me_text
+        //-         .about-me_text-user
+        //-           ul.about-me_desc-list
+        //-             li.about-me_desc-item Проживаю:
+        //-             li.about-me_desc-item Возраст:
+        //-             li.about-me_desc-item Родился:
+        //-           ul.about-me_desc-list
+        //-             li.about-me_desc-item Уфа
+        //-             li.about-me_desc-item 30 лет
+        //-             li.about-me_desc-item 6 ноября 1988
+        //-         .about-me_text-desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+        //- .fullscreen-section
+        //-   .useful
+        //-     .useful-pic
+        //-        +image('content/Backpack.png', 'useful-pic_img')
+        //-     .useful-content
+        //-       .useful-content_text
+        //-         .useful_title Чем я могу быть полезен вам
+        //-         .useful_text
+        //-       .useful-content_diagramm
+        //-         .diagramm-frontend
+        //-         .diagramm-workflow
