@@ -18,23 +18,30 @@
   width: 178px;
   height: 100px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(85, 0, 242, 1);
+  }
+
   &:focus {
-    border: 3px solid #f29400;
+    border: 3px solid #5500f2;
   }
 }
 
 .slider-preview__controlls {
-    display: flex;
-    margin-bottom: -50px;
+  display: flex;
+  margin-bottom: -50px;
 }
-.slider-preview__controlls-btn  {
-    width: 50px;
-    height: 50px;
-    background: #2d3c4e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.slider-preview__controlls-btn {
+  width: 50px;
+  height: 50px;
+  background: #2d3c4e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background: #5500f2;
+  }
 }
 
 .slider-preview__controlls-icon {
@@ -43,6 +50,6 @@
   fill: #fff;
   transform: rotate(90deg);
   &_up {
-      transform: rotate(270deg);
+    transform: rotate(270deg);
   }
 }

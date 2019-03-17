@@ -17,16 +17,9 @@
 .form-block__title {
   margin-bottom: 10px;
   padding-left: 50px;
-  opacity: 0.3;
+  opacity: 0.7;
   font-size: 16px;
   font-weight: 400;
-}
-
-.form-block__title-icon {
-  height: 30px;
-  width: 30px;
-  opacity: 0.3;
-  margin-top: 15px;
 }
 
 .form-block__input {
@@ -37,4 +30,18 @@
   font-size: 18px;
   font-weight: 700;
   color: #414c63;
+  &:focus {
+    outline: none;
+    .form-block__title-icon {
+      fill: #5500f2;
+      opacity: 1;
+    }
+  }
+}
+
+.form-block__title-icon {
+  height: 30px;
+  width: 30px;
+  opacity: 0.3;
+  margin-top: 15px;
 }
