@@ -72,15 +72,15 @@ html(lang="en")
               points="0,100 1000,100 1000,0"
             )     
         section.values
-          .container
+          .container.values__container
             .values__title
-              h2.section-title Чем я могу быть полезен вам
+              h2.section-title.values__title-text.section-title--xmall Чем я могу быть полезен вам
               .values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             ul.user-skills
               -
                 var skills = [
-                  ['Front-end', ['HTML5', 'CSS3', 'Javascript', 'Jquery и Vue.js'], [370, 300, 120, 370]],
-                  ['Workflow', ['GIT', 'Terminal', 'Gulp', 'Webpack'], [120, 370, 250, 300]],
+                  ['Front-end', ['HTML5', 'CSS3', 'Javascript', 'Jquery и Vue.js']],
+                  ['Workflow', ['GIT', 'Terminal', 'Gulp', 'Webpack']],
                 ]
               each item in skills
                 li.user-skills__item
@@ -88,7 +88,6 @@ html(lang="en")
                     h3.skills-row__title #{item[0]}
                     ul.skills-row__list
                       each skill in item[1]
-                      each dash in item[2]
                         li.skills-row__item
                           .skill
                             svg(viewbox="0 0 200 200" preserveAspectRatio="none").skill__shape
@@ -97,8 +96,50 @@ html(lang="en")
                               lineargradient#gradient(x1='0', y1='0', x2='0', y2='100%')
                                 stop(offset='0%', stop-color='#ad00ed')
                                 stop(offset='100%', stop-color='#5500f2')
-                            .skill__title #{skill}
-
-
+                                .skill__title #{skill}
+        section.work
+        .triangles
+        .bottom-section
+          section.reviews 
+            .reviews__title
+              .section-title Что обо мне говорят
+              .reviews__slider-controls
+            ul.reviews__slider
+              - for (var i=0; i<2; i++)
+                li.reviews__slider-item
+                  .quote
+                    .quote__text
+                    .quote__author
+                      .user.user--horizontal
+                        .user__avatar
+                          +image(`content/user.jpg`, 'user__avatar-pic')
+                        .user__data
+                          .user__name Ковальчук Дмитрий
+                          .user__occ Основатель Loftschool
+          section.form
+        footer.footer
+          .container
+            .footer__copyright
+              .copyright
+                .copyright__year 2019
+                .copyright__username Булат Хисаев
+                .copyright__desc
+            .footer__data  
+              .footer__menu
+                nav.nav.nav--color-white 
+                  ul.nav__list
+                    each item in menu
+                      li.nav__item
+                        a(href="").nav__link #{item}     
+              .footer__data-columns
+                .footer__data-col
+                  .footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                  .footer__socials
+                    ul.socials.socials--rounded 
+                      each item in socials  
+                        li.socials__item
+                          a(href="").socials__link
+                            +icon(`${item}`, 'socials__icon')
+                .footer__data-col
 
 
