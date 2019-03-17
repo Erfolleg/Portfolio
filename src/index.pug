@@ -75,12 +75,14 @@ html(lang="en")
           .container.values__container
             .values__title
               h2.section-title.values__title-text.section-title--xmall Чем я могу быть полезен вам
-              .values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+              article.values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            .values__bg
+              +image(`content/Backpack.png`, 'values__bg-img')
             ul.user-skills
               -
                 var skills = [
-                  ['Front-end', ['HTML5', 'CSS3', 'Javascript', 'Jquery и Vue.js']],
-                  ['Workflow', ['GIT', 'Terminal', 'Gulp', 'Webpack']],
+                  ['Front-end', [{name:'HTML5', num: '370'},{name:'CSS3', num: '300'}, {name:'Javascript', num: '120'}, {name:'Jquery и Vue.js', num: '370'}]],
+                  ['Workflow', [{name:'GIT', num: '120'}, {name:'Terminal', num: '370'}, {name:'Gulp', num: '250'}, {name:'Webpack', num: '300'}]],
                 ]
               each item in skills
                 li.user-skills__item
@@ -92,38 +94,109 @@ html(lang="en")
                           .skill
                             svg(viewbox="0 0 200 200" preserveAspectRatio="none").skill__shape
                               circle(r="80" cx="100" cy="100").skill__circle.skill__circle-under
-                              circle(r="80" cx="100" cy="100" transform="rotate(-180 100 100)"   stroke-dashoffset=`${dash}`).skill__circle.skill__circle-above
+                              circle(r="80" cx="100" cy="100" transform="rotate(-180 100 100)"   stroke-dashoffset=`${skill.num}`).skill__circle.skill__circle-above
                               lineargradient#gradient(x1='0', y1='0', x2='0', y2='100%')
                                 stop(offset='0%', stop-color='#ad00ed')
                                 stop(offset='100%', stop-color='#5500f2')
-                                .skill__title #{skill}
+                                .skill__title #{skill.name}
         section.work
-        .triangles
+          .container
+            .work__title  
+              h2.section-title Мои работы
+            .work__content
+              .work__slider-preview
+                .slider-preview
+                  ul.slider-preview-small
+                    - var pics = ['content/3.jpg', 'content/2.jpg', 'content/1.jpg']
+                    each pic in pics
+                      li.slider-preview-small-pic
+                        +image(`${pic}`, 'slider-preview-small-img')
+                  ul.slider-preview__controlls
+                    li.slider-preview__controlls-btn 
+                      +icon(`arrow-down`,'slider-preview__controlls-icon slider-preview__controlls-icon_up')
+                    li.slider-preview__controlls-btn 
+                      +icon(`arrow-down`,'slider-preview__controlls-icon')
+              .work__num 2
+              .work__content-text
+                ul.content-text__tag
+                  - var tags = ['HTML', 'CSS', 'Javascript']
+                  each tag in tags
+                    li.content-text__tag-pic #{tag}
+                h3.content-text__title Сайт школы образования
+                .content-text__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                .content-text__look 
+                  .content-text__look-img 
+                    +icon(`link`, 'content-text__look-icon')
+                  a(href="#").content-text__look-link Посмотреть сайт
+                  
+        .triangles.triangles__bottom
+          svg.triangles__item.triangles__item--left(viewbox="0 0 1000 100" preserveAspectRatio="none")
+            polygon(
+              points="0,0 1000,0 1000,100"
+            )          
+          svg.triangles__item.triangles__item--right(viewbox="0 0 1000 100" preserveAspectRatio="none")
+            polygon(
+              points="0,0 0,100 1000,0"
+            )     
         .bottom-section
           section.reviews 
-            .reviews__title
-              .section-title Что обо мне говорят
-              .reviews__slider-controls
-            ul.reviews__slider
-              - for (var i=0; i<2; i++)
-                li.reviews__slider-item
-                  .quote
-                    .quote__text
-                    .quote__author
-                      .user.user--horizontal
-                        .user__avatar
-                          +image(`content/user.jpg`, 'user__avatar-pic')
-                        .user__data
-                          .user__name Ковальчук Дмитрий
-                          .user__occ Основатель Loftschool
-          section.form
+            .container
+              .reviews__title
+                .section-title Что обо мне говорят
+                ul.reviews__slider-controls
+                    li.reviews__slider-controls_btn
+                      +icon(`arrow-down`,'reviews__slider-controls--icon reviews__slider-controls--icon_left')
+                    li.reviews__slider-controls_btn
+                      +icon(`arrow-down`,'reviews__slider-controls--icon')
+              ul.reviews__slider
+                - for (var i=0; i<2; i++) 
+                -  var pics = [['content/dima.jpg', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!', 'Ковальчук Дмитрий', 'Основатель Loftschool'], ['content/vova.jpg', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах', 'Владимир Сабанцев', 'Преподаватель']]
+                each pic in pics
+                    li.reviews__slider-item
+                      .quote
+                        article.quote__text #{pic[1]} 
+                          +icon(`quote`, 'quote__text-icon')
+                        .quote__author
+                          .user.user--horizontal
+                            .user__avatar
+                              +image(`${pic[0]}`, 'user__avatar-pic')
+                            .user__data
+                              .user__name #{pic[2]}
+                              .user__occ #{pic[3]}
+          section.contact
+            .container
+              .contact__title
+                .section-title Связаться со мной
+              form.form(action="")
+                .form-row
+                  label.form-block(for="")
+                    .form-block__title Введите ваше имя
+                    .form-block__container
+                      +icon(`user`, 'form-block__title-icon')
+                      .form-block__field
+                        input.form-block__input(type="text" name="name" placeholder="Ковальчук Дмитрий" required)
+                  label.form-block(for="")
+                    .form-block__title Введите ваш email
+                    .form-block__container
+                      +icon(`envelope`, 'form-block__title-icon')
+                      .form-block__field
+                        input.form-block__input(type="email" name="name" placeholder="loftschool@study.com" required)
+                .form-row
+                  label.form-block(for="").form-block__textarea
+                    .form-block__title Сообщение к письму
+                    .form-block__container
+                      +icon(`message`, 'form-block__title-icon')
+                      .form-block__field
+                        textarea(name="comment", cols="40", rows="3").form-block__input
+                .form-row
+                  input(type="submit" value="Заказать").form-row__button
         footer.footer
-          .container
+          .container.footer__container
             .footer__copyright
               .copyright
-                .copyright__year 2019
+                .copyright__year © 2019
                 .copyright__username Булат Хисаев
-                .copyright__desc
+                .copyright__desc Личный сайт веб-разработчика
             .footer__data  
               .footer__menu
                 nav.nav.nav--color-white 
@@ -133,7 +206,7 @@ html(lang="en")
                         a(href="").nav__link #{item}     
               .footer__data-columns
                 .footer__data-col
-                  .footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                  article.footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
                   .footer__socials
                     ul.socials.socials--rounded 
                       each item in socials  
@@ -141,5 +214,8 @@ html(lang="en")
                           a(href="").socials__link
                             +icon(`${item}`, 'socials__icon')
                 .footer__data-col
-
+                  article.footer__text
+                    p Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                    p Martin Golding
+          
 
