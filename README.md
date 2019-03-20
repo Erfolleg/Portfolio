@@ -21,6 +21,9 @@ $ yarn имя_скрипта
 ```
 
 ##### Для GH-pages
+```sh
  $ git add dist && git commit -m "Initial dist subtree commit"
+```
 ```sh
  $ git subtree push --prefix dist origin gh-pages
+```
