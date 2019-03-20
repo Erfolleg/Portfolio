@@ -92,9 +92,9 @@ html(lang="en")
                       each skill in item[1]
                         li.skills-row__item
                           .skill
-                            svg(viewbox="0 0 200 200" preserveAspectRatio="none").skill__shape
-                              circle(r="80" cx="100" cy="100").skill__circle.skill__circle-under
-                              circle(r="80" cx="100" cy="100" transform="rotate(-180 100 100)"   stroke-dashoffset=`${skill.num}`).skill__circle.skill__circle-above
+                            svg(viewbox="0 0 220 220" preserveAspectRatio="none").skill__shape
+                              circle(r="90" cx="110" cy="110").skill__circle.skill__circle-under
+                              circle(r="90" cx="110" cy="110" transform="rotate(-180 110 110)"   stroke-dashoffset=`${skill.num}`).skill__circle.skill__circle-above
                               lineargradient#gradient(x1='0', y1='0', x2='0', y2='100%')
                                 stop(offset='0%', stop-color='#ad00ed')
                                 stop(offset='100%', stop-color='#5500f2')
@@ -187,7 +187,7 @@ html(lang="en")
                     .form-block__container
                       +icon(`message`, 'form-block__title-icon')
                       .form-block__field
-                        textarea(name="comment", cols="40", rows="3").form-block__input
+                        textarea(name="comment", cols="40", rows="1").form-block__input
                 .form-row
                   input(type="submit" value="Заказать").form-row__button
         footer.footer
