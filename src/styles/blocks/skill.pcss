@@ -1,0 +1,30 @@
+.skill {
+  &__shape {
+    width: 150px;
+    height: 150px;
+  }
+  &__circle-under {
+    fill: transparent;
+    stroke: #eaeaea;
+    stroke-width: 10px;
+  }
+  &__circle-above {
+    fill: transparent;
+    stroke: url(#gradient);
+    stroke-width: 20px;
+    stroke-dasharray: 500;
+  }
+}
+
+.skill__title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 30px;
+  text-align: center;
+}
