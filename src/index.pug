@@ -87,30 +87,7 @@ html(lang="en")
             .work__title  
               h2.section-title Мои работы
             .work__content
-              .work__slider-preview
-                .slider-preview
-                  ul.slider-preview-small
-                    - var pics = ['content/3.jpg', 'content/2.jpg', 'content/1.jpg']
-                    each pic in pics
-                      li.slider-preview-small-pic
-                        +image(`${pic}`, 'slider-preview-small-img')
-                  ul.slider-preview__controlls
-                    li.slider-preview__controlls-btn 
-                      +icon(`arrow-down`,'slider-preview__controlls-icon slider-preview__controlls-icon_up')
-                    li.slider-preview__controlls-btn 
-                      +icon(`arrow-down`,'slider-preview__controlls-icon')
-              .work__num 2
-              .work__content-text
-                ul.content-text__tag
-                  - var tags = ['HTML', 'CSS', 'Javascript']
-                  each tag in tags
-                    li.content-text__tag-pic #{tag}
-                h3.content-text__title Сайт школы образования
-                .content-text__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                .content-text__look 
-                  .content-text__look-img 
-                    +icon(`link`, 'content-text__look-icon')
-                  a(href="#").content-text__look-link Посмотреть сайт
+              #slider-component
                   
         .triangles.triangles__bottom
           svg.triangles__item.triangles__item--left(viewbox="0 0 1000 100" preserveAspectRatio="none")
