@@ -76,29 +76,12 @@ html(lang="en")
             .values__title
               h2.section-title.values__title-text.section-title--xmall Чем я могу быть полезен вам
               article.values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-            .values__bg
-              +image(`content/Backpack.png`, 'values__bg-img')
-            ul.user-skills
-              -
-                var skills = [
-                  ['Front-end', [{name:'HTML5', num: '370'},{name:'CSS3', num: '300'}, {name:'Javascript', num: '120'}, {name:'Jquery и Vue.js', num: '370'}]],
-                  ['Workflow', [{name:'GIT', num: '120'}, {name:'Terminal', num: '370'}, {name:'Gulp', num: '250'}, {name:'Webpack', num: '300'}]],
-                ]
-              each item in skills
-                li.user-skills__item
-                  .skills-row
-                    h3.skills-row__title #{item[0]}
-                    ul.skills-row__list
-                      each skill in item[1]
-                        li.skills-row__item
-                          .skill
-                            svg(viewbox="0 0 220 220" preserveAspectRatio="none").skill__shape
-                              circle(r="90" cx="110" cy="110").skill__circle.skill__circle-under
-                              circle(r="90" cx="110" cy="110" transform="rotate(-180 110 110)"   stroke-dashoffset=`${skill.num}`).skill__circle.skill__circle-above
-                              lineargradient#gradient(x1='0', y1='0', x2='0', y2='100%')
-                                stop(offset='0%', stop-color='#ad00ed')
-                                stop(offset='100%', stop-color='#5500f2')
-                                .skill__title #{skill.name}
+            .values__bg-skills
+              .values__bg
+                +image(`content/Backpack.png`, 'values__bg-img')
+              .values__widget
+                #skills-component
+               
         section.work
           .container
             .work__title  
@@ -217,5 +200,5 @@ html(lang="en")
                   article.footer__text
                     p.footer__text-statements Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
                     p.footer__text-author Martin Golding
-          
 
+    include ./templates/entry.pug
