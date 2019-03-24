@@ -11,6 +11,22 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section
+          section.parallax
+            .parallax-bg
+              .parallax__layer(data-speed="0.1")
+                img(src=require("images/parallax/1.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.13")
+                img(src=require("images/parallax/2.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.16")
+                img(src=require("images/parallax/3.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.2")
+                img(src=require("images/parallax/4.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.23")
+                img(src=require("images/parallax/5.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.25")
+                img(src=require("images/parallax/6.png"), alt="").parallax__image
+              .parallax__layer(data-speed="0.28")
+                img(src=require("images/parallax/7.png"), alt="").parallax__image
           section.hero
             .container.hero__container
               header.header
@@ -101,8 +117,9 @@ html(lang="en")
               points="0,0 0,100 1000,0"
             )     
         .bottom-section
+         
           section.reviews#reviews-component
-              reviews-component
+            reviews-component
           section.contact
             .container
               .contact__title

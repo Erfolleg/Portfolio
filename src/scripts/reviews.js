@@ -10,6 +10,14 @@ Vue.component("reviews-component", {
     };
   },
   methods: {
+    arrWithRequiredImages(array) {
+      return array.map(item => {
+        const requredPic = require(`../images/content/${item["author-pic"]}`);
+        item["author-pic"] = requredPic;
+
+        return item;
+      });
+    },
     slide(derection) {
       const slider = this.$refs["reviews-slider"];
       const elemWidth = slider.getBoundingClientRect().width;
@@ -36,66 +44,13 @@ Vue.component("reviews-component", {
 
       slider.style.transform = `translateX(-${this.strafe}px)`;
     }
+
+    
   },
   created() {
-    this.reviews = [
-      {
-        id: 0,
-        text:
-          "1 Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!",
-        "author-name": "Ковальчук Дмитрий",
-        "author-occ": "Основатель Loftschool",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 1,
-        text:
-          "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах",
-        "author-name": "Владимир Сабанцев",
-        "author-occ": "Преподаватель",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 2,
-        text:
-          "3 Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!",
-        "author-name": "Ковальчук Дмитрий",
-        "author-occ": "Основатель Loftschool",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 3,
-        text:
-        "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах",
-        "author-name": "Владимир Сабанцев",
-        "author-occ": "Преподаватель",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 4,
-        text:
-          "3 Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!",
-        "author-name": "Ковальчук Дмитрий",
-        "author-occ": "Основатель Loftschool",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 3,
-        text:
-        "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах",
-        "author-name": "Владимир Сабанцев",
-        "author-occ": "Преподаватель",
-        "author-pic": "user.jpg"
-      },
-      {
-        id: 4,
-        text:
-          "3 Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!",
-        "author-name": "Ковальчук Дмитрий",
-        "author-occ": "Основатель Loftschool",
-        "author-pic": "user.jpg"
-      }
-    ];
+    const reviews = require("../data/reviews.json");
+    this.reviews = this.arrWithRequiredImages(reviews);
+   
   }
 });
   
