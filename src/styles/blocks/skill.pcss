@@ -1,7 +1,16 @@
 .skill {
   &__shape {
-    width: 170px;
-    height: 170px;
+    width: 140px;
+    height: 140px;
+    @include tablets {
+      width: 160px;
+      height: 160px;
+    }
+
+    @include phones {
+      width: 150px;
+      height: 150px;
+    }
   }
   &__circle-under {
     fill: transparent;
@@ -10,8 +19,8 @@
   }
   &__circle-above {
     fill: transparent;
-    stroke-width: 20px;
-    stroke-dasharray: 408;
+    stroke-width: 15px;
+    stroke-dasharray: 314;
     stroke-dashoffset: 250;
   }
 }
@@ -22,9 +31,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.5;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   line-height: 30px;
   text-align: center;
+  @include phones {
+    left: 53%;
+    top: 53%;
+  }
 }

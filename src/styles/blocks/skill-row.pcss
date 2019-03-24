@@ -1,16 +1,39 @@
 .skills-row__title {
   margin-bottom: 50px;
-  font-family: "Open Sans";
   font-size: 24px;
   font-weight: 700;
+
+  @include desktop {
+    margin-bottom: 30px;
+  }
+
+  @include tablets {
+    text-align: center;
+  }
+
+  @include phones {
+    font-size: 18px;
+  }
 }
 
 .skills-row__item {
-  position: relative;  
+  position: relative;
   margin-right: 40px;
+
+  @include desktop {
+    margin-right: 20px;
+  }
+
+  @include tablets {
+    margin-right: 0;
+  }
 }
 
 .skills-row__list {
   display: flex;
   justify-content: space-around;
+
+  @include phones {
+    flex-wrap: wrap;
+  }
 }

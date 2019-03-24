@@ -4,6 +4,14 @@
   margin-top: -80px;
   &__bottom {
     margin-bottom: -80px;
+    @include phones {
+      margin-bottom: -20px;
+    }
+  }
+
+  @include phones {
+    height: 20px;
+    margin-top: -20px;
   }
 }
 

@@ -6,22 +6,33 @@
   position: absolute;
   content: attr(data-slide);
   right: -20px;
-  top: 80px;
+  top: 180px;
   color: #f0f0f0;
   font-size: 300px;
   font-weight: 800;
   line-height: 48px;
   z-index: -10;
+
+  @include desktop {
+    top: 80px;
+  }
 }
 
 .works-slider__fuulpic-container {
   position: relative;
   margin-right: 15%;
+
+  @include phones {
+    margin: 0 -10%;
+  }
 }
 
 .works-slider__buttons {
   display: flex;
   justify-content: flex-end;
+  @include phones {
+    margin-top: -50px;
+  }
 }
 
 .works-slider__btn {
@@ -36,7 +47,7 @@
     transform: rotate(-90deg);
     &:hover {
       fill: rgba(255, 255, 255, 1);
-      &:active  {
+      &:active {
         padding-left: 2px;
       }
     }
@@ -46,9 +57,9 @@
     &:hover {
       fill: rgba(255, 255, 255, 1);
     }
-    &:active  {
-        padding-left: 2px;
-      }
+    &:active {
+      padding-left: 2px;
+    }
   }
   &:hover {
     background-color: #5500f2;
@@ -66,6 +77,10 @@
   bottom: 50px;
   right: 0;
   width: 25%;
+
+  @include phones {
+    display: none;
+  }
 }
 
 .works-slider__thumb_item {

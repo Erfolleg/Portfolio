@@ -29,6 +29,8 @@ html(lang="en")
                       li.socials__item
                         a(href="").socials__link
                           +icon(`${item}`, 'socials__icon')
+                a(href="#").header__links-menu
+                  .header__links-menu_bars
               .hero__content
                 .user-info.user-info__content
                   .user-info__desc Личный сайт веб разработчика
@@ -77,10 +79,10 @@ html(lang="en")
               h2.section-title.values__title-text.section-title--xmall Чем я могу быть полезен вам
               article.values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             .values__bg-skills
-              .values__bg
-                +image(`content/Backpack.png`, 'values__bg-img')
               .values__widget
                 #skills-component
+              .values__bg
+                +image(`content/Backpack.png`, 'values__bg-img')
                
         section.work
           .container
@@ -99,30 +101,8 @@ html(lang="en")
               points="0,0 0,100 1000,0"
             )     
         .bottom-section
-          section.reviews 
-            .container
-              .reviews__title
-                .section-title Что обо мне говорят
-                ul.reviews__slider-controls
-                    li.reviews__slider-controls_btn
-                      +icon(`arrow-down`,'reviews__slider-controls--icon reviews__slider-controls--icon_left')
-                    li.reviews__slider-controls_btn
-                      +icon(`arrow-down`,'reviews__slider-controls--icon')
-              ul.reviews__slider
-                - for (var i=0; i<2; i++) 
-                -  var pics = [['content/dima.jpg', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!', 'Ковальчук Дмитрий', 'Основатель Loftschool'], ['content/vova.jpg', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах', 'Владимир Сабанцев', 'Преподаватель']]
-                each pic in pics
-                    li.reviews__slider-item
-                      .quote
-                        article.quote__text #{pic[1]} 
-                          +icon(`quote`, 'quote__text-icon')
-                        .quote__author
-                          .user.user--horizontal
-                            .user__avatar
-                              +image(`${pic[0]}`, 'user__avatar-pic')
-                            .user__data
-                              .user__name #{pic[2]}
-                              .user__occ #{pic[3]}
+          section.reviews#reviews-component
+              reviews-component
           section.contact
             .container
               .contact__title
@@ -148,8 +128,8 @@ html(lang="en")
                       +icon(`message`, 'form-block__title-icon')
                       .form-block__field
                         textarea(name="comment").form-block__input.form-block__input-textarea
-                .form-row
-                  input(type="submit" value="Заказать").form-row__button
+                .form-row.form-row__btn
+                  input(type="submit" value="Отправить").form-row__button
         footer.footer
           .container.footer__container
             .footer__copyright
