@@ -2,8 +2,18 @@
   position: relative;
   height: 80px;
   margin-top: -80px;
+  background: #fff;
+  background-position: center;
+  background-size: cover;
+  
   &__bottom {
+    clip-path: polygon(0 0, 0 2%, 50% 100%, 100% 2%, 100% 0);
     margin-bottom: -80px;
+
+    @include desktop {
+      margin-bottom: -80px;
+    }
+
     @include phones {
       margin-bottom: -20px;
     }
@@ -12,20 +22,5 @@
   @include phones {
     height: 20px;
     margin-top: -20px;
-  }
-}
-
-.triangles__item {
-  display: block;
-  height: 100%;
-  width: 50%;
-  position: absolute;
-  fill: #fff;
-  &--left {
-    left: 0;
-  }
-
-  &--right {
-    right: 0;
   }
 }

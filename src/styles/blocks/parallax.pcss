@@ -5,15 +5,19 @@
   right: 0;
   bottom: 0;
   z-index: -100;
-}
 
+   @include tablets {
+     display: none;
+   }
+}
 .parallax-bg {
-  position: relative;
+  position: relative;  
+  width: 100vw;
+  min-height: 1740px;
+  height: 180vh;
   overflow: hidden;
-  height: 1380px;
-  min-height: 650px;
+  
 }
-
 .parallax__layer {
   position: absolute;
   top: 0;
@@ -21,60 +25,50 @@
   width: 100%;
   height: 100%;
   will-change: transform;
-
-  &:nth-child(1) {
-    .parallax__image {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &:nth-child(2) {
-    .parallax__image {
-      right: 0;
-      top: 360px;
-    }
-  }
-
-  &:nth-child(3) {
-    .parallax__image {
-      top: 518px;
-      left: 50%;
-      margin-left: 12%;
-      width: 20%;
-    }
-  }
-
-  &:nth-child(4) {
-    .parallax__image {
-      top: 610px;
-      left: 0;
-    }
-  }
-
-  &:nth-child(5) {
-    .parallax__image {
-      left: 0;
-      top: 610px;
-    }
-  }
-
-  &:nth-child(6) {
-    .parallax__image {
-      right: 0;
-      bottom: 0;
-      width: 50%;
-    }
-  }
-  &:nth-child(7) {
-    .parallax__image {
-      bottom: -400px;
-      left: 0;
-    }
-  }
 }
 
-.parallax__image {
+.parallax__images {
   position: absolute;
+  z-index: -1;
+  bottom: 0;
+
+  &--clouds {
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &--mountains {
+    right: 0;
+    top: 20%;
+    width: 100%;
+  }
+
+  &--balloon {
+    top: 25%;
+    right: 400px;
+  }
+
+  &--overcast {
+    top: 35%;
+    width: 100%;
+  }
+
+  &--stones {
+    left: 0;
+    bottom: 5%;
+  }
+
+  &--slope {
+    right: 0;
+    bottom: 15%;
+    width: 80%;
+  }
+
+  &--snow {
+    right: 0;
+    width: 100%;
+  }
 }
