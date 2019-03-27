@@ -11,17 +11,34 @@ html(lang="en")
     .wrapper
       .maincontent
         .welcome-section
-          section.hero
+          section.parallax
+            .parallax-bg
+              .parallax__layer(data-speed="0")
+                img.parallax__images.parallax__images--clouds(src=require("images/parallax/1.png") role="presentation")
+              .parallax__layer(data-speed="0.13")
+                img.parallax__images.parallax__images--mountains(src=require("images/parallax/2.png") role="presentation")
+              .parallax__layer(data-speed="0.16")
+                img.parallax__images.parallax__images--balloon(src=require("images/parallax/3.png") role="presentation")
+              .parallax__layer(data-speed="0.2")
+                img.parallax__images.parallax__images--overcast(src=require("images/parallax/4.png") role="presentation")
+              .parallax__layer(data-speed="0.23")
+                img.parallax__images.parallax__images--stones(src=require("images/parallax/5.png") role="presentation")
+              .parallax__layer(data-speed="0")
+                img.parallax__images.parallax__images--slope(src=require("images/parallax/6.png") role="presentation")
+              .parallax__layer(data-speed="0")
+                img.parallax__images.parallax__images--snow(src=require("images/parallax/7.png") role="presentation")
+
+          section.hero#head1
             .container.hero__container
               header.header
                 .logo ХБ
                 .header__menu
                   nav.nav 
                     ul.nav__list
-                      - var menu = ['Главная', 'Обо мне', 'Навыки', 'Работы', 'Отзывы', 'Связаться'];
+                      - var menu = [{name: 'Главная', id:'#head1'}, {name: 'Обо мне', id:'#head2'}, {name: 'Навыки', id:'#head3'}, {name: 'Работы', id:'#head4'}, {name: 'Отзывы', id:'#head5'}, {name: 'Связаться', id:'#head6'}];
                       each item in menu
                         li.nav__item
-                          a(href="").nav__link #{item}
+                          a(href=item.id).nav__link #{item.name}
                 .header__links
                   ul.socials 
                     - var socials = ['insta', 'vk', 'github'];
@@ -29,14 +46,16 @@ html(lang="en")
                       li.socials__item
                         a(href="").socials__link
                           +icon(`${item}`, 'socials__icon')
+                a(href="#").header__links-menu
+                  .header__links-menu_bars
               .hero__content
                 .user-info.user-info__content
                   .user-info__desc Личный сайт веб разработчика
                   .user-info__name Булат Хисаев
-              .hero__bottom-buttons
-                .scroll-down-button Скролл
+              button.hero__bottom-buttons
+                a(href="#head2").scroll-down-button Скролл
                   +icon(`scroll`, 'scroll-down-button__icon')
-          section.about
+          section.about#head2
             .container.about__container
               .about__left
                 .user
@@ -61,92 +80,29 @@ html(lang="en")
                   p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                 .about__ps 
                   p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-
-        .triangles  
-          svg.triangles__item.triangles__item--left(viewbox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(
-              points="0,0 0,100 1000,100"
-            )          
-          svg.triangles__item.triangles__item--right(viewbox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(
-              points="0,100 1000,100 1000,0"
-            )     
-        section.values
+ 
+        section.values#head3
           .container.values__container
             .values__title
               h2.section-title.values__title-text.section-title--xmall Чем я могу быть полезен вам
               article.values__desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             .values__bg-skills
-              .values__bg
-                +image(`content/Backpack.png`, 'values__bg-img')
               .values__widget
                 #skills-component
+              .values__bg
+                +image(`content/Backpack.png`, 'values__bg-img')
                
-        section.work
+        section.work#head4
           .container
             .work__title  
               h2.section-title Мои работы
             .work__content
-              .work__slider-preview
-                .slider-preview
-                  ul.slider-preview-small
-                    - var pics = ['content/3.jpg', 'content/2.jpg', 'content/1.jpg']
-                    each pic in pics
-                      li.slider-preview-small-pic
-                        +image(`${pic}`, 'slider-preview-small-img')
-                  ul.slider-preview__controlls
-                    li.slider-preview__controlls-btn 
-                      +icon(`arrow-down`,'slider-preview__controlls-icon slider-preview__controlls-icon_up')
-                    li.slider-preview__controlls-btn 
-                      +icon(`arrow-down`,'slider-preview__controlls-icon')
-              .work__num 2
-              .work__content-text
-                ul.content-text__tag
-                  - var tags = ['HTML', 'CSS', 'Javascript']
-                  each tag in tags
-                    li.content-text__tag-pic #{tag}
-                h3.content-text__title Сайт школы образования
-                .content-text__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                .content-text__look 
-                  .content-text__look-img 
-                    +icon(`link`, 'content-text__look-icon')
-                  a(href="#").content-text__look-link Посмотреть сайт
-                  
-        .triangles.triangles__bottom
-          svg.triangles__item.triangles__item--left(viewbox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(
-              points="0,0 1000,0 1000,100"
-            )          
-          svg.triangles__item.triangles__item--right(viewbox="0 0 1000 100" preserveAspectRatio="none")
-            polygon(
-              points="0,0 0,100 1000,0"
-            )     
+              #slider-component 
         .bottom-section
-          section.reviews 
-            .container
-              .reviews__title
-                .section-title Что обо мне говорят
-                ul.reviews__slider-controls
-                    li.reviews__slider-controls_btn
-                      +icon(`arrow-down`,'reviews__slider-controls--icon reviews__slider-controls--icon_left')
-                    li.reviews__slider-controls_btn
-                      +icon(`arrow-down`,'reviews__slider-controls--icon')
-              ul.reviews__slider
-                - for (var i=0; i<2; i++) 
-                -  var pics = [['content/dima.jpg', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!', 'Ковальчук Дмитрий', 'Основатель Loftschool'], ['content/vova.jpg', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах', 'Владимир Сабанцев', 'Преподаватель']]
-                each pic in pics
-                    li.reviews__slider-item
-                      .quote
-                        article.quote__text #{pic[1]} 
-                          +icon(`quote`, 'quote__text-icon')
-                        .quote__author
-                          .user.user--horizontal
-                            .user__avatar
-                              +image(`${pic[0]}`, 'user__avatar-pic')
-                            .user__data
-                              .user__name #{pic[2]}
-                              .user__occ #{pic[3]}
-          section.contact
+         
+          section.reviews#reviews-component
+            reviews-component
+          section.contact#head6
             .container
               .contact__title
                 .section-title Связаться со мной
@@ -171,8 +127,8 @@ html(lang="en")
                       +icon(`message`, 'form-block__title-icon')
                       .form-block__field
                         textarea(name="comment").form-block__input.form-block__input-textarea
-                .form-row
-                  input(type="submit" value="Заказать").form-row__button
+                .form-row.form-row__btn
+                  input(type="submit" value="Отправить").form-row__button
         footer.footer
           .container.footer__container
             .footer__copyright
@@ -186,7 +142,7 @@ html(lang="en")
                   ul.nav__list
                     each item in menu
                       li.nav__item
-                        a(href="").nav__link #{item}     
+                         a(href=item.id).nav__link #{item.name}
               .footer__data-columns
                 .footer__data-col
                   article.footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool

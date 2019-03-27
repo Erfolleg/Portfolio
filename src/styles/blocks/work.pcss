@@ -1,13 +1,21 @@
 .work {
-  padding: 5% 0 13% 3%;
+  padding: 5% 0 13% 0;
+
+  @include phones {
+    padding-bottom: 30%;
+  }
 }
 
 .work__title {
   margin-bottom: 61px;
 }
 
-.work__content {
+.work__slider {
   display: flex;
+
+  @include tablets {
+    flex-direction: column;
+  }
 }
 
 .work__num {
@@ -16,8 +24,23 @@
   font-weight: 800;
   margin-top: -100px;
   margin-left: -50px;
+  z-index: -10;
 }
 
 .work__content-text {
-  width: 30%;
+  width: 50%;
+
+  @include tablets {
+    width: 61%;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include phones {
+    width: 100%;
+    text-align: left;
+  }
 }

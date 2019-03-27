@@ -30,10 +30,21 @@
   font-weight: 600;
   margin-bottom: 50px;
   line-height: 30px;
+
+  @include tablets {
+    margin-bottom: 32px;
+  }
 }
 
 .content-text__look {
   display: flex;
+  cursor: pointer;
+  padding: 5px;
+  &:hover {
+    .content-text__look-link {
+      text-decoration: underline;
+    }
+  }
 }
 
 .content-text__look-icon {
@@ -49,8 +60,4 @@
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }

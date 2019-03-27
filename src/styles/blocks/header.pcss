@@ -1,12 +1,61 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 3%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3%;
 }
 
 .header__menu {
-    flex: 1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+
+  @include tablets {
+    display: none;
+  }
+}
+
+.header__links {
+  @include tablets {
+    margin-left: 50%;
+  }
+  @include phones {
+    display: none;
+  }
+}
+
+.header__links-menu {
+  display: none;
+  position: relative;
+  height: 22px;
+  align-items: center;
+  @include tablets {
     display: flex;
-    justify-content: center;
-    margin: 0 20px;
+  }
+}
+
+.header__links-menu_bars {
+  &,
+  &::before,
+  &::after {
+    width: 24px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #414c63;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
 }

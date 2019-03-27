@@ -1,25 +1,37 @@
-.quote {
-  height: 100%;
+.quote__content {
+  min-height: 220px;
   display: flex;
   flex-direction: column;
+
+  @include phones {
+    min-height: 100%;
+  }
 }
 .quote__text {
-  position: relative;
   margin-bottom: 30px;
   flex: 1;
   opacity: 0.5;
   font-size: 16px;
   font-weight: 600;
   line-height: 30px;
+
+  @include phones {
+    font-size: 14px;
+    line-height: 24px;
+  }
 }
 
-.quote__text-icon {
-  position: absolute;
-  width: 59px;
-  fill: #414c63;
-  opacity: 0.05;
-  left: -70px;
-  top: 0;
+.quote__icon {
+  margin-right: 30px;
+
+  @include tablets {
+    display: none;
+  }
+  &-pic {
+    width: 59px;
+    fill: #414c63;
+    opacity: 0.05;
+  }
 }
 
 .quote__author {

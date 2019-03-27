@@ -1,3 +1,9 @@
 .welcome-section {
-    background: url('../images/content/MountainBaloon.jpg') center center / cover no-repeat;
+  position: relative;
+  clip-path: polygon(0 0, 0 95%, 50% 100%, 100% 95%, 100% 0);
+
+  @include tablets {
+    background: url("../images/content/MountainBaloon.jpg") center center /
+      cover no-repeat;
+  }
 }
