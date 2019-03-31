@@ -34,7 +34,7 @@ const display = {
 const tags = {
   template: "#slider-tags",
   props: {
-      tagsArray: Array
+    tagsArray: Array
   }
 };
 
@@ -47,9 +47,9 @@ const info = {
     currentWork: Object
   },
   computed: {
-      tagsArray(){
-         return this.currentWork.skills.split(','); 
-      }
+    tagsArray() {
+      return this.currentWork.skills.split(",");
+    }
   }
 };
 
@@ -73,13 +73,13 @@ new Vue({
   },
   watch: {
     currentIndex(value) {
-        this.makeInfiniteLoopForCurIndex(value);
+      this.makeInfiniteLoopForCurIndex(value);
     }
   },
   methods: {
     makeInfiniteLoopForCurIndex(value) {
       const worksAmount = this.works.length - 1;
-      if (value > this.works.length) this.currentIndex = 0;
+      if (value > worksAmount) this.currentIndex = 0;
       if (value < 0) this.currentIndex = worksAmount;
     },
 
@@ -100,6 +100,9 @@ new Vue({
           this.currentIndex--;
           break;
       }
+    },
+    selectWork(id) {
+      this.currentIndex = id;
     }
   },
   created() {
