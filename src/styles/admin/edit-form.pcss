@@ -1,5 +1,12 @@
 .edit-form__container {
   display: flex;
+  @include tablets {
+    flex-direction: column;
+    padding: 0 106px;
+  }
+   @include phones {
+     padding: 0;
+   }
 }
 
 .edit-form__col {
@@ -19,6 +26,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+   @include phones {
+     padding: 0 5%;
+   }
 
   &-text {
     opacity: 0.5;
@@ -31,20 +41,25 @@
 }
 
 .edit-form__btn-file {
-    margin: 0 auto;
-    position: relative;
+  margin: 0 auto;
+  position: relative;
 }
 
 .edit-form__buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include tablets {
+    justify-content: center;
+  }
 
-    &-item {
-        margin-right: 60px;
-        &:last-child {
-            margin-right: 0;
-        }
+  &-item {
+    margin-right: 60px;
+    &:last-child {
+      margin-right: 0;
     }
+     @include phones {
+       margin-right: 20px;
+     }
+  }
 }
