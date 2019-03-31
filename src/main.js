@@ -8,3 +8,5 @@ import "./scripts/works";
 import "./scripts/reviews";
 import "./scripts/parallax";
 import "./scripts/scroll";
+import "./scripts/modul-forma";
+import "./scripts/menu-humburger";

@@ -106,20 +106,22 @@ html(lang="en")
             .container
               .contact__title
                 .section-title Связаться со мной
-              form.form(action="")
+              form.form#order-form(method="POST")
                 .form-row
-                  label.form-block(for="")
+                  label.form-block.form-block__error(for="")
                     .form-block__title Введите ваше имя
                     .form-block__container
                       +icon(`user`, 'form-block__title-icon')
                       .form-block__field
                         input.form-block__input(type="text" name="name" placeholder="" required)
-                  label.form-block(for="")
+                        .error
+                  label.form-block.form-block__error(for="")
                     .form-block__title Введите ваш email
                     .form-block__container
                       +icon(`envelope`, 'form-block__title-icon')
                       .form-block__field
-                        input.form-block__input(type="email" name="name" placeholder="" required)
+                        input.form-block__input(type="email" name="email" placeholder="" required)
+                        .error
                 .form-row
                   label.form-block(for="")
                     .form-block__title Сообщение к письму
@@ -156,5 +158,28 @@ html(lang="en")
                   article.footer__text
                     p.footer__text-statements Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
                     p.footer__text-author Martin Golding
+    
+    .popup-menu
+      .humburger-menu
+        nav.nav 
+          ul.nav__list
+            - var menu = [{name: 'Главная', id:'#head1'}, {name: 'Обо мне', id:'#head2'}, {name: 'Навыки', id:'#head3'}, {name: 'Работы', id:'#head4'}, {name: 'Отзывы', id:'#head5'}, {name: 'Связаться', id:'#head6'}];
+            each item in menu
+              li.nav__item
+                a(href=item.id).nav__link #{item.name}
+        .header__links
+          ul.socials 
+            - var socials = ['insta', 'vk', 'github'];
+            each item in socials  
+              li.socials__item
+                a(href="").socials__link
+                  +icon(`${item}`, 'socials__icon')
+        .humburger-menu__close
+
+    .popup__order
+      .overlay-order
+        .popup-container-order
+          .popup__content-order text
+          button.btn-modal Закрыть
 
     include ./templates/entry.pug
