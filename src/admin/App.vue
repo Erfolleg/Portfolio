@@ -213,7 +213,7 @@
 @import "../styles/admin/base-admin.pcss";
 @import "../styles/layout/base.pcss";
 
-@import "../styles/admin/root-wrapper-container.pcss";
+
 @import "../styles/admin/root-container.pcss";
 @import "../styles/admin/header.pcss";
 @import "../styles/admin/user.pcss";

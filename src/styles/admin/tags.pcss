@@ -10,6 +10,14 @@
   margin-right: 8px;
   margin-bottom: 8px;
   font-size: 13px;
+
+   @include phones {
+     padding: 6px 15px;
+     margin-bottom: 39px;
+     &:last-child {
+       margin-right: 0;
+     }
+   }
 }
 
 .tags__remove {

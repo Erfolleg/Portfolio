@@ -1,10 +1,17 @@
 .skill-list {
   display: flex;
+  @include phones {
+    flex-wrap: wrap;
+  }
   &__item {
     width: 50%;
     background: #fff;
     margin-left: 30px;
     margin-bottom: 30px;
+    @include phones {
+      width: 100%;
+      margin-left: 0;
+    }
   }
   &__table {
     margin-bottom: 40px;

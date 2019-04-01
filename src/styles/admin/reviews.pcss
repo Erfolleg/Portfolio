@@ -2,12 +2,23 @@
   margin-bottom: 30px;
   .edit-form__buttons {
     padding-right: 23%;
+    @include tablets {
+      padding-right: 5%;
+      justify-content: flex-end;
+    }
   }
 }
 
 .reviews__form-content {
   padding-right: 20%;
   display: flex;
+  @include tablets {
+    padding: 0;
+  }
+
+  @include phones {
+    flex-direction: column;
+  }
 }
 
 .reviews__form-col {
@@ -16,10 +27,19 @@
 .reviews__form-user__pic {
   margin-right: 30px;
   text-align: center;
+
+  @include phones {
+    margin-right: 0;
+    margin-bottom: 45px;
+  }
 }
 
 .reviews__form-pic {
   margin-bottom: 30px;
+  @include phones {
+    display: flex;
+    justify-content: center;
+  }
 }
 .reviews__form-avatar {
   width: 200px;
@@ -51,14 +71,28 @@
 .reviews__form-row {
   display: flex;
   margin-bottom: 35px;
+  @include tablets {
+    flex-direction: column;
+    padding-right: 150px;
+    &:last-child {
+      padding-right: 0;
+    }
+  }
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @include phones {
+    padding-right: 0;
   }
 }
 
 .reviews__form-block {
   margin-right: 30px;
   flex: 1;
+  @include phones {
+    margin-right: 0;
+  }
 }
 
 .reviews {
@@ -71,6 +105,15 @@
   width: 30%;
   margin-left: 30px;
   margin-bottom: 30px;
+  @include tablets {
+    width: 45%;
+  }
+
+   @include phones {
+     min-width: 280px;
+     margin-left: 0;
+     width: 100%;
+   }
   .user {
     margin-right: 0;
   }
@@ -85,6 +128,6 @@
 }
 
 .reviews__btns {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
