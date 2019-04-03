@@ -1,6 +1,7 @@
 <template lang="pug">
     .root-wrapper-container
       .root-container 
+        
         header.header
           .container.header-container
             .header__info
@@ -202,6 +203,26 @@
                             button(type="button" data-text="Править").btn.is-pencil
                             button(type="button" data-text="Удалить").btn.is-cross
 
+        .login
+          .login__content
+            form.login__form
+              .login__form-title Авторизация
+              .login__form-close
+              .login__form-row
+                label.input
+                  .input__title Логин
+                  .input_block
+                    .input_icon-user
+                    input.input__elem
+              .login__form-row
+                label.input
+                  .input__title Пароль
+                  .input_block
+                    .input_icon-key
+                    input.input__elem(type="password")
+              .login__form-button
+                button.login__form-btn(type="submit") Отправить
+
 </template>
 
 
@@ -233,4 +254,5 @@
 @import "../styles/admin/edit-form.pcss";
 @import "../styles/admin/tags.pcss";
 @import "../styles/admin/reviews.pcss";
+@import "../styles/admin/login.pcss";
 </style>
