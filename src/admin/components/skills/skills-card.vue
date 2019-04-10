@@ -1,29 +1,36 @@
 <template lang="pug">
     .card
-        .card__title
-            .skills-card-title
-                .skills-card-title__text {{category.category}}
-                .skills-card-title__btn
-                    button(type="button").btn.is-pencil.grayscale
-        .card__content
-            .skill-list__table
-                .skill-table-container
-                    table.skills
-                       skills-item(
-                           v-for="skill in skills"
-                           :key="skill.id"
-                           :skill="skill"
-                       )
-        .add-new
-            .add-new-container
-                .add-new__inputs
-                    .add-new__col
-                        label.input
-                            input.input__elem(placeholder="Новый навык" v-model="skill.title")
-                    .add-new__col.add-new__col-small
-                        label.input
-                            input.input__elem(type="number" min="0" max="100" maxlength="3" v-model="skill.percent")
-                button(type="button" @click="addNewSkill").add-new__button
+      .card__title(v-if="editMode === false")
+        .skills-card-title
+          .skills-card-title__text {{category.category}}
+          .skills-card-title__btn
+            button(type="button" @click="editmode = true").btn.is-pencil.grayscale
+      .card__title(v-else)
+        .skills-card-title
+          input(type="text" placeholder="Название новой группы" v-model="editedCategory.category").skills-card-title__text
+          .skills-card-title__btn
+            button(type="button" @click="editCurrSkillCard(editedCategory)").btn.is-tick
+            button(type="button" @click="removeCurrSkillCard(category.id)").btn.is-cross
+       
+      .card__content
+          .skill-list__table
+              .skill-table-container
+                  table.skills
+                      skills-item(
+                          v-for="skill in skills"
+                          :key="skill.id"
+                          :skill="skill"
+                      )
+      .add-new
+          .add-new-container
+              .add-new__inputs
+                  .add-new__col
+                      label.input
+                          input.input__elem(placeholder="Новый навык" v-model="skill.title")
+                  .add-new__col.add-new__col-small
+                      label.input
+                          input.input__elem(type="number" min="0" max="100" maxlength="3" v-model="skill.percent")
+              button(type="button" @click="addNewSkill").add-new__button
 </template>
 
 <script>
@@ -35,6 +42,8 @@ export default {
     },
     data() {
         return {
+            editMode: false,
+            editedCategory: {...this.category},
             skill: {
                 category: this.category.id,
                 title: "",
@@ -46,14 +55,32 @@ export default {
        skillsItem: () => import('components/skills/skills-item.vue')
     },
     methods: {
-        ...mapActions('skills', ['addSkill']),
-        async addNewSkill() {
-            try {
-                await this.addSkill(this.skill);
-            } catch (error) {
-                alert(error.message)
-            }
+      ...mapActions('skills', ['addSkill', 'removeCategories']),
+      ...mapActions('categories', ['removeCategories', 'editSkillGroup']),
+      async deletedSkillGroup(){
+        try {
+          await this.removeCategories(this.category.id)
+          console.log('Запись удалена');
+        } catch (error) {
+          alert('Проблема с удалением категории');
         }
+      },
+      async editCurrSkillCard(skillCard) {
+        if ((await this.$validate("editedCategory.category")) === false) return;
+        try {
+          await this.editSkillGroup(skillCard);
+          this.editMode = false;
+        } catch (error) {
+          console.log(error.message);
+        }
+      },
+      async addNewSkill() {
+        try {
+          await this.addSkill(this.skill);
+          } catch (error) {
+            alert(error.message)
+          }
+      }
     },
 };
 </script>

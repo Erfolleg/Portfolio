@@ -26,7 +26,7 @@ export default {
           commit('ADD_SKILL', response.data);
           return response
       } catch (error) {
-        alert(error.message)
+        alert('Ошибка в skills.js / admin ADD_SKILL')
       }
     },
     async fetchSkills({ commit }, skill) {
@@ -35,7 +35,7 @@ export default {
             commit('SET_SKILLS', response.data)
             return response
         } catch (error) {
-          alert(error.message)
+          alert('Ошибка в skills.js / admin SET_SKILL')
         }
     },
     async removeSkill({ commit }, skillId) {
@@ -44,7 +44,7 @@ export default {
             commit('REMOVE_SKILL', skillId);
             return response
         } catch (error) {
-          alert(error.message)
+          alert('Ошибка в skills.js / admin REMOVE_SKILL')
         }
       },
       async editSkill({ commit }, skill) {
@@ -53,7 +53,7 @@ export default {
             commit('EDIT_SKILL', response.data.skill);
             return response
         } catch (error) {
-          alert(error.message)
+          alert('Какая то ошибка при изменение скилла')
         }
       }
   }

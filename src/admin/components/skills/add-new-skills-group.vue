@@ -14,10 +14,14 @@
                 ).input__elem
           .skills-card-title__buttons
             .skills-card-title__btn
-              button(type="button" @click="addSkillGroup").btn.is-tick
+              button(
+                type="button" 
+                @click="addSkillGroup"
+                ).btn.is-tick
             .skills-card-title__btn
-              button( type="button"
-                ).btn.is-cross
+              button(type="button" 
+              @click="$emit('closeNewSkillGroup')"
+              ).btn.is-cross
       .card__content
         .add-new
           form.add-new-container.blocked

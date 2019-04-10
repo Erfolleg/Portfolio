@@ -30,11 +30,6 @@ export default {
 
 @import "../styles/admin/root-container.pcss";
 @import "../styles/admin/btn.pcss";
-@import "../styles/admin/title.pcss";
 @import "../styles/admin/content.pcss";
-@import "../styles/admin/input.pcss";
-@import "../styles/admin/works.pcss";
-@import "../styles/admin/edit-form.pcss";
 @import "../styles/admin/tags.pcss";
-@import "../styles/admin/reviews.pcss";
 </style>

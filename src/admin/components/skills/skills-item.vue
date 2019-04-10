@@ -17,9 +17,9 @@
                 input(type="text" v-model="editedSkill.percent").skills__input-text
                     
         td.skills-cell 
-            button(type="button" @click="save").btn.is-tick.grayscale.no-words
+            button(type="button" @click="save").btn.is-tick.no-words
         td.skills-cell 
-            button(type="button" @click="editmode = false").btn.is-cross.grayscale.no-words
+            button(type="button" @click="editmode = false").btn.is-cross.no-words
 </template>
 
 <script>
@@ -40,7 +40,7 @@ export default {
             try { 
                 await this.removeSkill(this.skill.id);
             } catch (error) {
-                alert(error.message)
+                alert('Проблема с удалением скилла');
             }
         },
         async save () {
@@ -48,7 +48,7 @@ export default {
                await this.editSkill(this.editedSkill);
                this.editmode = false;
             } catch (error) {
-                alert(error.message)
+                alert('Проблема при изменение скила');
             }
         }
     },

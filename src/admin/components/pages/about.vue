@@ -1,8 +1,8 @@
 <template lang="pug">
     section.about
         .container.about-container
-            .about-title
-                h1.title Блок «Обо мне»
+            .title.about-title
+                h1.title.about-title-text Блок «Обо мне»
                 button.about__add-btn(
                   @click="showAddingForm = true"
                   v-if="showAddingForm === false"
@@ -11,9 +11,7 @@
             .about__content
                 ul.skill-list
                     li.skill-list__item(v-if="showAddingForm")
-                      add-new-skills-group(
-                          
-                        )
+                      add-new-skills-group(@closeNewSkillGroup="$emit('closeNewSkillGroup')")
                     li.skill-list__item(
                       v-for="category in categories"
                       :key="category.id"
@@ -72,7 +70,7 @@ export default {
 
 .about-title {
   display: flex;
-  padding: 60px 0;
+  
   @include phones {
     flex-direction: column;
   }
