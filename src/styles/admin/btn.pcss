@@ -33,9 +33,18 @@
   }
   &.is-trash {
     display: flex;
+    align-items: center;
+    justify-content: center;
     &:after {
       background: svg-load("trash.svg", fill=$text-color) center center
         no-repeat / contain;
+    }
+  }
+  &.is-tick {
+    display: flex;
+    &:after {
+      background: svg-load("tick.svg", fill=#00d70a) center center no-repeat /
+        contain;
     }
   }
 }
@@ -93,9 +102,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-   @include phones {
-     padding: 30px 0;
-   }
+  @include phones {
+    padding: 30px 0;
+  }
 }
 .btn__text {
   display: flex;
