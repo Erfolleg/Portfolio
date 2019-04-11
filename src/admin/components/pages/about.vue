@@ -3,7 +3,7 @@
         .container.about-container
             .title.about-title
                 h1.title.about-title-text Блок «Обо мне»
-                button.about__add-btn(
+                button.add-btn(
                   @click="showAddingForm = true"
                   v-if="showAddingForm === false"
                 ) Добавить группу
@@ -76,7 +76,7 @@ export default {
   }
 }
 
-.about__add-btn {
+.add-btn {
   margin-left: 93px;
   position: relative;
   background: transparent;
