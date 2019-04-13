@@ -5,13 +5,13 @@
                 h1.title.about-title-text Блок «Обо мне»
                 button.add-btn(
                   @click="showAddingForm = true"
-                  v-if="showAddingForm === false"
+                  v-if="showAddingForm == false"
                 ) Добавить группу
 
             .about__content
                 ul.skill-list
                     li.skill-list__item(v-if="showAddingForm")
-                      add-new-skills-group(@closeNewSkillGroup="$emit('closeNewSkillGroup')")
+                      add-new-skills-group(:showAddingForm=showAddingForm)
                     li.skill-list__item(
                       v-for="category in categories"
                       :key="category.id"
@@ -47,7 +47,7 @@ export default {
       ...mapActions('categories', ['fetchCategories']),
       ...mapActions('skills', ['fetchSkills']),
       filterSkillsByCategotyId(categoryId) {
-        return this.skills.filter(skill => skill.category === categoryId);
+        return this.skills.filter(skill => skill.category == categoryId);
       }
     },
     async created() {

@@ -1,16 +1,16 @@
 <template lang="pug">
     .card
-      .card__title(v-if="editMode === false")
+      .card__title(v-if="editModeCategory === false")
         .skills-card-title
           .skills-card-title__text {{category.category}}
           .skills-card-title__btn
-            button(type="button" @click="editmode = true").btn.is-pencil.grayscale
+            button(type="button" @click="editModeCategory = true").btn.is-pencil.grayscale
       .card__title(v-else)
         .skills-card-title
           input(type="text" placeholder="Название новой группы" v-model="editedCategory.category").skills-card-title__text
           .skills-card-title__btn
             button(type="button" @click="editCurrSkillCard(editedCategory)").btn.is-tick
-            button(type="button" @click="removeCurrSkillCard(category.id)").btn.is-cross
+            button(type="button" @click.prevent="deletedSkillGroup").btn.is-cross
        
       .card__content
           .skill-list__table
@@ -29,7 +29,7 @@
                           input.input__elem(placeholder="Новый навык" v-model="skill.title")
                   .add-new__col.add-new__col-small
                       label.input
-                          input.input__elem(type="number" min="0" max="100" maxlength="3" v-model="skill.percent")
+                          input.input__elem(type="number" placeholder="   %" min="0" max="100" maxlength="3" v-model="skill.percent")
               button(type="button" @click="addNewSkill").add-new__button
 </template>
 
@@ -42,7 +42,7 @@ export default {
     },
     data() {
         return {
-            editMode: false,
+            editModeCategory: false,
             editedCategory: {...this.category},
             skill: {
                 category: this.category.id,
@@ -66,10 +66,9 @@ export default {
         }
       },
       async editCurrSkillCard(skillCard) {
-        if ((await this.$validate("editedCategory.category")) === false) return;
         try {
           await this.editSkillGroup(skillCard);
-          this.editMode = false;
+          this.editModeCategory = false;
         } catch (error) {
           console.log(error.message);
         }

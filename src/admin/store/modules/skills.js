@@ -29,9 +29,19 @@ export default {
         alert('Ошибка в skills.js / admin ADD_SKILL')
       }
     },
-    async fetchSkills({ commit }, skill) {
+    async fetchSkills({ commit }) {
+      let responseUserId, userId;
+
+      try {
+
+        responseUserId = await this.$axios.get("/user");
+        userId = responseUserId.data.user.id;
+
+      } catch(error) {
+        console.log(error.message);
+      }
         try {
-            const response = await this.$axios.get('/skills/119', skill);
+            const response = await this.$axios.get(`/skills/${userId}`);
             commit('SET_SKILLS', response.data)
             return response
         } catch (error) {

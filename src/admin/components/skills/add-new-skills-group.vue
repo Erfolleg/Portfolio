@@ -19,9 +19,10 @@
                 @click="addSkillGroup"
                 ).btn.is-tick
             .skills-card-title__btn
-              button(type="button" 
-              @click="$emit('closeNewSkillGroup')"
-              ).btn.is-cross
+              button(
+                type="button"
+                 @click.prevent  = "showAddingForm = false"
+                 ).btn.is-cross
       .card__content
         .add-new
           form.add-new-container.blocked
@@ -48,7 +49,7 @@ export default {
     async addSkillGroup() {
       try {
         await this.addNewSkillGroup(this.skillTitle);
-        his.skillTitle= "";
+        this.skillTitle= "";
       } catch (error) {
         alert(error.message)
       }

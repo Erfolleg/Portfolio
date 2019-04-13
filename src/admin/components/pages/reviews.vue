@@ -3,24 +3,21 @@
     .container
       .title Блок «Отзывы»
     .reviews-container
-      .container
-        reviews-form
-        reviews-cards
+      reviews-form(
+        v-if="reviewsForm.show"
+        )
+      reviews-cards
                
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 export default {
   components: {
     reviewsForm: () => import("components/reviews/reviewsForm.vue"),
     reviewsCards: () => import("components/reviews/reviewsCards.vue"),
   },
-  data() {
-    return {
-    }
-  },
-  computed: {
+ computed: {
     ...mapState("reviews", {
       reviewsForm: state => state.reviewsForm,
       editedReview: state => state.editedReview
@@ -236,7 +233,8 @@ export default {
 
 .reviews__item {
   width: calc(50%-30px);
-  min-width: 300px;
+  max-width: 340px;
+  min-height: 380px;
   margin-left: 30px;
   margin-bottom: 30px;
   @include tablets {
