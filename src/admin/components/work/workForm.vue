@@ -6,50 +6,171 @@
             .card__content
                 .edit-form__container
                     .edit-form__col
-                        .edit-form__img
+                        .edit-form__img(
+                          :style="{'backgroundImage' : `url(${this.renderedPhotoUrl})`}"
+                        )
                             .edit-form__img-text Перетащите или загрузите для загрузки изображения
-                            .edit-form__btn-file
+                            label.edit-form__btn-file
                                 .btn-file-fake ЗАГРУЗИТЬ
-                                input.btn-file-input(type="file")
+                                input.btn-file-input(
+                                  type="file"
+                                  @change="appendFileAndRenderPhoto"
+                                  )
                     .edit-form__col
                         .edit-form__row
                             label.input
                                 .input__title Название
-                                input.input__elem
+                                input(
+                                  type="text" 
+                                  name="title" 
+                                  placeholder="Введите название работы" 
+                                  v-model="work.title"
+                                ).input__elem#title
                         .edit-form__row
                             label.input
                                 .input__title Ссылка
-                                input.input__elem
+                                input(
+                                  type="text" 
+                                  name="link" 
+                                  placeholder="Вставьте ссылку" 
+                                  v-model="work.link"
+                                ).input__elem#link
                         .edit-form__row
                             label.input
                                 .input__title Описание
-                                textarea.textarea__elem
+                                textarea(
+                                  name="description"
+                                  placeholder="Введите описание работы" 
+                                  v-model="work.description"
+                                ).textarea__elem#description
                         .edit-form__row
-                            .add-tags
-                                .add-tags__wrapper
-                                    label.input
-                                        .input__title Добавление тэга
-                                        input.input__elem
-                                ul.tags
-                                    li.tags__item
-                                        span HTML
-                                        a.tags__remove.grayscale
-                                    li.tags__item 
-                                        span CSS
-                                        a.tags__remove.grayscale
-                                    li.tags__item 
-                                        span Javascript
-                                        a.tags__remove.grayscale
+                          .add-tags
+                            .add-tags__wrapper
+                              label.input
+                                .input__title Добавление тэга
+                                input.input__elem#tags(
+                                  type="text"
+                                  name="tags"
+                                  placeholder="Добавьте теги"
+                                  v-model="work.techs"
+                                  @change="ADD_TAGS(work.techs)"
+                                )
+                            add-tags(v-if="workForm.editMode")    
+                                
                 .edit-form__buttons
                     .edit-form__buttons-item
-                        button.btn__clear Отмена
+                        button(
+                          type="button"
+                          @click="CLOSE_FORM"
+                        ).btn__clear Отмена
                     .edit-form__buttons-item
-                        button.btn__load Загрузить
+                        button(
+                          type="button"
+                          @click="addNewWork"
+                          v-if="!workForm.editMode"
+                        ).btn__load Загрузить
+                        button(
+                          type="button"
+                          v-if="workForm.editMode"
+                          @click="saveEditedWork"
+                        ).btn__load Сохранить
+        
 </template>
 
 <script>
+import { mapActions, mapMutations, mapState } from "vuex";
 export default {
-    
+    components: {
+    addTags: () => import("./addTags.vue")
+    },
+    data() {
+      return {
+        renderedPhotoUrl: "",
+        work: {
+          title: "",
+          techs: "",
+          photo: "",
+          link: "",
+          description: ""
+        }
+      };
+    },
+    computed: {
+      ...mapState("works", {
+        workForm: state => state.workForm,
+        editedWork: state => state.editedWork,
+        editedTags: state => state.editedTags
+      }),
+      remotePhotoPath() {
+        return `https://webdev-api.loftschool.com/${this.work.photo}`;
+      },
+      editedTagsAsString() {
+        return this.editedTags.join(',');
+      }
+    },
+    methods: {
+    ...mapActions("works", ["addWork", "editWork"]),
+    ...mapMutations("works", ["CLOSE_FORM", 'ADD_TAGS']),
+      appendFileAndRenderPhoto(e) {
+        const file = e.target.files[0];
+        this.work.photo = file;
+        const reader = new FileReader();
+        try {
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.renderedPhotoUrl = reader.result;
+          };
+        } catch (error) {
+          console.error(error.message);
+        }
+      },
+      async addNewWork() {
+        try {
+          const workFormData = this.createWorkFormData();
+          await this.addWork(workFormData);
+          this["CLOSE_FORM"]();
+        } catch (error) {
+          console.error(error.message);
+        }
+      },
+      createWorkFormData() {
+      const formData = new FormData();
+      formData.append("title", this.work.title);
+      if (this.workForm.editMode) {
+        formData.append("techs", this.editedTagsAsString);
+      } else {
+        formData.append("techs", this.work.techs);
+      }
+      formData.append("photo", this.work.photo);
+      formData.append("link", this.work.link);
+      formData.append("description", this.work.description);
+      return formData;
+      },
+      setEditedWork() {
+        this.work = { ...this.editedWork };
+        this.renderedPhotoUrl = this.remotePhotoPath;
+      },
+      async saveEditedWork() {
+        if ((await this.$validate()) === false) return;
+        try {
+          const workData = {
+            id: this.work.id,
+            data: this.createWorkFormData()
+          };
+          await this.editWork(workData);
+          this['CLOSE_FORM']();
+        } catch (error) {
+          console.error(error.message);
+        }
+      },
+    },
+    created() {
+      if (this.workForm.editMode) {
+        this.setEditedWork();
+        this.work.techs = "";
+      }
+    }
+
 }
 </script>
 
@@ -77,6 +198,7 @@ export default {
 .edit-form__img {
   border: 1px dashed #a1a1a1;
   background-color: #dee4ed;
+  background: center center no-repeat / cover;
   padding: 0 25%;
   text-align: center;
   width: 100%;

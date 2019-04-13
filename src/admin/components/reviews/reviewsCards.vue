@@ -2,6 +2,7 @@
     ul.reviews
         li.reviews__item
           button(
+            type="button"
             @click="showFormAndTurnEditModeOff"
             ).btn-container
               .btn__text

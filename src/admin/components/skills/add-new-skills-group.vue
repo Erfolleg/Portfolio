@@ -21,7 +21,7 @@
             .skills-card-title__btn
               button(
                 type="button"
-                 @click.prevent  = "showAddingForm = false"
+                 @click="$emit('closeNewSkillCard')"
                  ).btn.is-cross
       .card__content
         .add-new
@@ -50,11 +50,13 @@ export default {
       try {
         await this.addNewSkillGroup(this.skillTitle);
         this.skillTitle= "";
+        this.$emit('closeNewSkillCard');
       } catch (error) {
         alert(error.message)
       }
       
     }
+
   }
 };
 </script>
@@ -106,7 +108,7 @@ export default {
     font-weight: 400;
     padding-bottom: 5px;
     &:first-child {
-      width: 60%;
+      width: 300px;
     }
   }
 

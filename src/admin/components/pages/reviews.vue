@@ -2,19 +2,19 @@
   section.reviews-section
     .container
       .title Блок «Отзывы»
-    .reviews-container
-      reviews-form(
-        v-if="reviewsForm.show"
+      .reviews-container
+        review-form(
+          v-if="reviewForm.show"
         )
-      reviews-cards
+        reviews-cards
                
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   components: {
-    reviewsForm: () => import("components/reviews/reviewsForm.vue"),
+    reviewForm: () => import("components/reviews/reviewForm.vue"),
     reviewsCards: () => import("components/reviews/reviewsCards.vue"),
   },
   data() {
@@ -23,12 +23,12 @@ export default {
   },
   computed: {
     ...mapState("reviews", {
-      reviewsForm: state => state.reviewsForm,
+      reviewForm: state => state.reviewForm,
       editedReview: state => state.editedReview
     })
   },
-  created() { 
-    this.reviewsForm.show = false;    
+  created() {
+    this.reviewForm.show = false;
   }
 };
 </script>
@@ -182,6 +182,12 @@ export default {
   background-color: #dee4ed;
   border-radius: 50%;
   position: relative;
+  &.filled {
+    background: center center no-repeat / cover;
+      &::before {
+        display: none;
+      }
+  }
   &::before {
     content: "";
     position: absolute;
@@ -193,6 +199,7 @@ export default {
     transform: translate(-50%, -50%);
     width: 130px;
     height: 153px;
+  
   }
 }
 

@@ -3,37 +3,25 @@
         .container 
             .title Блок «Работы»
             .works-container
-              work-form
-              ul.works 
-                li.works__item
-                  button.btn-container 
-                    .btn__text
-                      .btn__circle
-                      .btn__title Добавить работу
-                li.works__item(v-for="n in 4")
-                  .card
-                    .works-wrapper
-                      .works__pic
-                        img(src="../../../images/content/1.jpg").works__image
-                        .works__tag
-                          ul.tags
-                            li.tags__item HTML5
-                            li.tags__item CSS
-                            li.tags__item Javascript
-                      .works__data
-                        .works__title Сайт школы образования
-                        .works__text
-                          p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                        a.works__link http://loftschool.ru
-                        .works__btns
-                          button(type="button" data-text="Править").btn.is-pencil
-                          button(type="button" data-text="Удалить").btn.is-cross
+              work-form(v-if="workForm.show")
+              work-cards
+              
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   components: {
-    workForm: () => import("components/work/workForm.vue")
+    workForm: () => import("components/work/workForm.vue"),
+    workCards: () => import("components/work/workСards.vue"),
+  },
+  computed: {
+    ...mapState('works', {
+      workForm: state => state.workForm
+    })
+  },
+  created() {
+    this.workForm.show = false;
   }
 }
 </script>
@@ -54,7 +42,7 @@ export default {
   width: 30%;
   margin-left: 30px;
   margin-bottom: 30px;
-  min-height: 560px;
+  min-height: 300px;
   background: #fff;
 
   @include tablets {

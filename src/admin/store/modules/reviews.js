@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     reviews: [],
-    reviewsForm: {
+    reviewForm: {
       show: false,
       editMode: false
     },
@@ -18,8 +18,8 @@ export default {
     },
 
     REMOVE_REVIEW: (state, deletedReviewId) => {
-      state.reviews = state.reviews.filter(review =>
-        review.id !== deletedReviewId
+      state.reviews = state.reviews.filter(
+        review => review.id !== deletedReviewId
       );
     },
 
@@ -28,32 +28,32 @@ export default {
         review.id === editedReview.id ? editedReview : review
       );
     },
-    SHOW_FORM: (state) => {
-      state.reviewsForm.show = true;
+
+    SHOW_FORM: state => {
+      state.reviewForm.show = true;
     },
 
-    CLOSE_FORM: (state) => {
-      state.reviewsForm.show = false;
+    CLOSE_FORM: state => {
+      state.reviewForm.show = false;
     },
 
-    TURN_EDIT_MODE_ON: (state) => {
-      state.reviewsForm.editMode = true;
+    TURN_EDIT_MODE_ON: state => {
+      state.reviewForm.editMode = true;
     },
 
-    TURN_EDIT_MODE_OFF: (state) => {
-      state.reviewsForm.editMode = false;
+    TURN_EDIT_MODE_OFF: state => {
+      state.reviewForm.editMode = false;
     },
 
     SET_EDITED_REVIEW: (state, review) => {
-      state.editedReview = {...review};
+      state.editedReview = { ...review };
     }
-
   },
   actions: {
     async addReview({ commit }, review) {
       try {
-        const response = await this.$axios.post("/reviews", review)
-        commit('ADD_REVIEW', response.data);
+        const response = await this.$axios.post("/reviews", review);
+        commit("ADD_REVIEW", response.data);
         return response;
       } catch (error) {
         throw new Error(
@@ -67,7 +67,7 @@ export default {
       try {
         responseUserId = await this.$axios.get("/user");
         userId = responseUserId.data.user.id;
-      } catch(error) {
+      } catch (error) {
         console.log(error.message);
       }
       try {
@@ -93,7 +93,10 @@ export default {
 
     async editReview({ commit }, reviewData) {
       try {
-        const response = await this.$axios.post(`/reviews/${reviewData.id}`, reviewData.data);
+        const response = await this.$axios.post(
+          `/reviews/${reviewData.id}`,
+          reviewData.data
+        );
         commit("EDIT_REVIEW", response.data.review);
         return response;
       } catch (error) {
@@ -103,4 +106,4 @@ export default {
       }
     }
   }
-}
+};

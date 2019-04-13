@@ -11,7 +11,10 @@
             .about__content
                 ul.skill-list
                     li.skill-list__item(v-if="showAddingForm")
-                      add-new-skills-group(:showAddingForm=showAddingForm)
+                      add-new-skills-group(
+                        :showAddingForm="showAddingForm"
+                         @closeNewSkillCard="showAddingForm = false"
+                        )
                     li.skill-list__item(
                       v-for="category in categories"
                       :key="category.id"

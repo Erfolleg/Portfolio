@@ -56,12 +56,17 @@ export default {
 </script>
 
 <style lang="postcss">
+
+.skills-row-wrapper {
+    width: 100%;
+}
+
 .skills-cell {
     font-size: 16px;
     font-weight: 400;
     padding-bottom: 5px;
     &:first-child {
-    width: 60%;
+    width: 300px;
     }
 }
 
