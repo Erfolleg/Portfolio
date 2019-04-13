@@ -31,5 +31,4 @@ export default {
 @import "../styles/admin/root-container.pcss";
 @import "../styles/admin/btn.pcss";
 @import "../styles/admin/content.pcss";
-@import "../styles/admin/tags.pcss";
 </style>

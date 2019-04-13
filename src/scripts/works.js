@@ -1,4 +1,7 @@
 import Vue from "vue";
+import axios from "axios";
+import requests from "../admin/requests";
+
 
 const thumbs = {
   template: "#slider-thumbs",
@@ -21,7 +24,9 @@ const display = {
   props: {
     works: Array,
     currentWork: Object,
-    currentIndex: Number
+    currentIndex: Number,
+    techs:
+    photo: 
   },
   computed: {
     reversedWorks() {
@@ -48,7 +53,7 @@ const info = {
   },
   computed: {
     tagsArray() {
-      return this.currentWork.skills.split(",");
+      return this.currentWork.techs.split(",");
     }
   }
 };
@@ -106,7 +111,9 @@ new Vue({
     }
   },
   created() {
-    const data = require("../data/works.json");
-    this.works = this.makeArrWithReguireImages(data);
+    axios.get('/works/119').then(response => {
+      this.works = response.data
+    })
+
   }
 });

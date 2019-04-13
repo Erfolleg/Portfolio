@@ -151,7 +151,7 @@ export default {
         this.renderedPhotoUrl = this.remotePhotoPath;
       },
       async saveEditedWork() {
-        if ((await this.$validate()) === false) return;
+       
         try {
           const workData = {
             id: this.work.id,
