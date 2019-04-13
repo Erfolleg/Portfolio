@@ -1,17 +1,16 @@
 <template lang="pug">
     ul.reviews
         li.reviews__item
-            button.btn-container
-                .btn__text
-                    .btn__circle
-                    button(
-                      type="button"
-                      @click="showFormAndTurnEditModeOff"
-                      ).btn__title Добавить отзыв
+          button(
+            @click="showFormAndTurnEditModeOff"
+            ).btn-container
+              .btn__text
+                  .btn__circle
+                  button(type="button").btn__title Добавить отзыв
         li.reviews__item(
           v-for="review in reviews"
           :key="review.id"
-        )
+          )
           review-card(
           :review="review"
           )

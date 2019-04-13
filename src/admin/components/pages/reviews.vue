@@ -17,14 +17,18 @@ export default {
     reviewsForm: () => import("components/reviews/reviewsForm.vue"),
     reviewsCards: () => import("components/reviews/reviewsCards.vue"),
   },
- computed: {
+  data() {
+    return {
+    }
+  },
+  computed: {
     ...mapState("reviews", {
       reviewsForm: state => state.reviewsForm,
       editedReview: state => state.editedReview
     })
   },
-  created() {
-    this.reviewsForm.show = false;
+  created() { 
+    this.reviewsForm.show = false;    
   }
 };
 </script>
