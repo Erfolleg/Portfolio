@@ -59,6 +59,6 @@ script(type="text/x-template")#slider-info
             a(:href="currentWork.link" target="_blank").content-text__look-link Посмотреть сайт
 
 script(type="text/x-template")#slider-tags
-    ul.content-text__tag
+    ul.content-text__tag(v-if="tagsArray.length")
         li.content-text__tag-pic(v-for="(tag, index) in tagsArray")
             .tag {{tag}}

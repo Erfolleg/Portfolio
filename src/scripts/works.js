@@ -24,9 +24,7 @@ const display = {
   props: {
     works: Array,
     currentWork: Object,
-    currentIndex: Number,
-    techs:
-    photo: 
+    currentIndex: Number
   },
   computed: {
     reversedWorks() {
