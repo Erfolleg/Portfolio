@@ -36,11 +36,13 @@ export default {
     },
     methods: {
         ...mapActions('skills', ['removeSkill', "editSkill"]),
+
         async removeExistedSkill() {
             try { 
                 await this.removeSkill(this.skill.id);
             } catch (error) {
                 alert('Проблема с удалением скилла');
+                
             }
         },
         async save () {

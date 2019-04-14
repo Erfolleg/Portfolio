@@ -22,6 +22,31 @@ label {
     padding: 0;
   }
 }
+.input, .textarea {
+  position: relative;
+
+  &.error {
+    .skill__input-error {
+      display: block;
+    }
+    .edit-form-input-error {
+      display: block;
+    }
+    .reviews__form-block-error {
+      display: block;
+    }
+  }
+}
+
+.skill__input-error,
+.edit-form-input-error,
+.reviews__form-block-error {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  opacity: 0.9;
+}
 
 .input__elem {
   padding: 10px 8%;

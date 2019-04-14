@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 
 @import "../../../styles/mixins.pcss";
 

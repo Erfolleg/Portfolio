@@ -33,6 +33,7 @@ export default {
   methods: {
     ...mapActions('reviews', ['removeReview']),
     ...mapMutations('reviews', ['SHOW_FORM', 'TURN_EDIT_MODE_ON', 'SET_EDITED_REVIEW']),
+    ...mapMutations('tooltip', ['SHOW_TOOLTIP']),
     showFormAndTurnEditModeOn() {
       this['TURN_EDIT_MODE_ON']();
       this['SHOW_FORM']();

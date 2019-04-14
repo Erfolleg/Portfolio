@@ -41,7 +41,7 @@ export default {
     try {
       this.fetchWorks();
     } catch (error) {
-      console.error(error.messsage);
+      alert(error.messsage);
     }
   }
   

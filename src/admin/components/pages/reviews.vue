@@ -176,32 +176,7 @@ export default {
     justify-content: center;
   }
 }
-.reviews__form-avatar {
-  width: 200px;
-  height: 200px;
-  background-color: #dee4ed;
-  border-radius: 50%;
-  position: relative;
-  &.filled {
-    background: center center no-repeat / cover;
-      &::before {
-        display: none;
-      }
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    display: block;
-    background: svg-load("filled-user.svg", fill=#ffffff) center center
-      no-repeat / contain;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 130px;
-    height: 153px;
-  
-  }
-}
+
 
 .reviews__form-add {
   color: #383bcf;
@@ -229,13 +204,7 @@ export default {
   }
 }
 
-.reviews__form-block {
-  margin-right: 30px;
-  flex: 1;
-  @include phones {
-    margin-right: 0;
-  }
-}
+
 
 .reviews {
   display: flex;

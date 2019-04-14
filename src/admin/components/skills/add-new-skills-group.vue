@@ -4,7 +4,7 @@
       .card__title
         .card__title-text
         .skills-card-title
-          .skills-card-title__input
+          .skills-card-title__input(:class="{'error' : validation.firstError('skillTitle')}")
             label.input
               input(
                 v-model="skillTitle"
@@ -12,6 +12,10 @@
                 autofocus="autofocus"
                 
                 ).input__elem
+              .skill-card__title-error
+                error-tooltip(
+                  :errorText="validation.firstError('skillTitle')"
+                )
           .skills-card-title__buttons
             .skills-card-title__btn
               button(
@@ -38,7 +42,17 @@
 
 <script>
 import { mapActions } from "vuex";
+import { Validator } from "simple-vue-validator";
 export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    "skillTitle": value => {
+      return Validator.value(value).required("Введите название группы");
+    }
+  },
+  components: {
+    errorTooltip: () => import("components/errorTooltip.vue")
+  },
   data() {
     return {
       skillTitle: ""
@@ -47,12 +61,18 @@ export default {
   methods: {
     ...mapActions('categories', ['addNewSkillGroup']),
     async addSkillGroup() {
+       if ((await this.$validate()) === false) return;
       try {
         await this.addNewSkillGroup(this.skillTitle);
         this.skillTitle= "";
         this.$emit('closeNewSkillCard');
       } catch (error) {
-        alert(error.message)
+        alert(error.message);
+
+        this['SHOW_TOOLTIP']({
+          type: 'error',
+          text: 'Произошла ошибка'
+        });
       }
       
     }
@@ -128,7 +148,22 @@ export default {
 
 .skills-card-title__input {
   width: 100%;
+  position: relative;
+
+   &.error {
+    .skill-card__title-error {
+      display: block;
+    }
+  }
 }
+
+.skill-card__title-error {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+}
+
 
 .skills-card-title__buttons {
   display: flex;

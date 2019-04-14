@@ -31,6 +31,7 @@ export default {
   methods: {
     ...mapMutations('reviews', ['SHOW_FORM', 'TURN_EDIT_MODE_OFF']),
     ...mapActions('reviews', ['fetchReviews']),
+    ...mapMutations("tooltip", ["SHOW_TOOLTIP"]),
     showFormAndTurnEditModeOff() {
       this['TURN_EDIT_MODE_OFF']();
       this['SHOW_FORM']();
@@ -39,8 +40,16 @@ export default {
   async created() {
     try {
       await this.fetchReviews();
+      this["SHOW_TOOLTIP"]({
+        type: "success",
+        text: "Отзывы загружены"
+      });
     } catch (error) {
-      console.error(error.message);
+      alert(error.message);
+      this["SHOW_TOOLTIP"]({
+        type: "error",
+        text: "Произошла ошибка"
+      });
     }
   }
   

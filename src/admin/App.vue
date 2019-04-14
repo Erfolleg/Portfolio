@@ -2,19 +2,26 @@
   .root-wrapper-container
     .root-container 
       header.header
-        app-header
+        app-header(v-if="userIsLogged")
       section.switches
-        tabs
+        tabs(v-if="userIsLogged")
       main.content
         router-view
+    tooltips
 
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
 export default {
+  name: "app",
   components: {
     appHeader: () => import("./components/header"),
     tabs: () => import("./components/tabs"),
+    tooltips: () => import("./components/tooltips")
+  },
+  computed: {
+    ...mapGetters('user', ['userIsLogged'])
   }
 };
 </script>

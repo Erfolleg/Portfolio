@@ -55,7 +55,7 @@ export default {
       try {
         await this.removeWork(this.work.id);
       } catch (error) {
-        console.error(error.message);
+        alert(error.message);
       }
     },
     showFormAndTurnEditModeOn() {
