@@ -17,15 +17,15 @@ exports.firefox = {
     }
 };
 
-// exports.chrome = {
-//     ...shared,
-//     desiredCapabilities: {
-//         browserName: 'chrome',
-//         chromeOptions: {
-//             args: ["disable-gpu", 'no-sandbox', 'disable-setuid-sandbox', 'incognito', 'disable-dev-shm-usage']
-//         }
-//     }
-// };
+exports.chrome = {
+    ...shared,
+    desiredCapabilities: {
+        browserName: 'chrome',
+        chromeOptions: {
+            args: ["disable-gpu", 'no-sandbox', 'disable-setuid-sandbox', 'incognito', 'disable-dev-shm-usage']
+        }
+    }
+};
 
 exports.opera = {
     ...shared,

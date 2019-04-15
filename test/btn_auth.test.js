@@ -20,14 +20,14 @@ test('на странице есть кнопка "Авторизоваться"
     .screenshot()
     .then(browsers => {
         for (const browserName in browsers) {
-            fs.writeFileSync(path: `./screenshots/button_auth_${browserName}_has_open.png`, browsers[browserName].value, "base64");
+            fs.writeFileSync(`./screenshots/button_auth_${browserName}_has_open.png`, browsers[browserName].value, "base64");
         }
     })
 });
 
 test('при нажатии на "Авторизация" появляется форма для  авторизации', () => {
     return client
-        .touchClick('.btn_auth')
+        .click('.btn_auth')
         .isVisible('.login__form')
         .then(browsers => {
             for (const browserName in browsers) {
@@ -37,7 +37,7 @@ test('при нажатии на "Авторизация" появляется �
         .screenshot()
         .then(browsers => {
             for (const browserName in browsers) {
-                fs.writeFileSync(path: `./screenshots/login__form_${browserName}_has_open.png`, browsers[browserName].value, "base64");
+                fs.writeFileSync(`./screenshots/login__form_${browserName}_has_open.png`, browsers[browserName].value, "base64");
             }
         })
 });
