@@ -126,7 +126,7 @@ export default {
   flex-direction: column;
   margin-bottom: 30px;
    @include phones {
-     padding: 30px 0;
+     padding: 7% 5%;
    }
   &__title {
     padding: 30px 2%;
@@ -209,6 +209,10 @@ export default {
 .reviews {
   display: flex;
   flex-wrap: wrap;
+
+  @include phones {
+  
+  }
 }
 
 .reviews__item {
@@ -219,12 +223,16 @@ export default {
   margin-bottom: 30px;
   @include tablets {
     width: 45%;
+    min-height: 100%;
   }
 
    @include phones {
      min-width: 280px;
      margin-left: 0;
      width: 100%;
+     min-height: 100%;
+     
+     
    }
   .user {
     margin-right: 0;

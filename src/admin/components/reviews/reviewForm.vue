@@ -229,9 +229,7 @@ export default {
   box-shadow: 4.1px 2.9px 20px 0 rgba(0, 0, 0, 0.07);
   display: flex;
   flex-direction: column;
-   @include phones {
-     padding: 30px 0;
-   }
+   
   &__title {
     padding: 30px 2%;
     border-bottom: 1px solid rgba(31, 35, 45, 0.15);

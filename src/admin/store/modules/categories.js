@@ -7,6 +7,9 @@ export default {
     SET_CATEGORIES: (state, categories) => {
       state.categories = categories;
     },
+    ADD_CATEGORY: (state, category) => {
+      state.categories.unshift(category);
+    },
     DELETE_CATEGORIES: (state, removeGroupId) => {
       state.categories = state.categories.filter(
         category => category.id != removeGroupId
@@ -24,6 +27,7 @@ export default {
         const response = await this.$axios.post("/categories", {
           title: groupTitle
         });
+        commit('ADD_CATEGORY', response.data);
         return response;
       } catch (error) {
         throw new Error(
