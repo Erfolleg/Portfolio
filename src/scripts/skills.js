@@ -1,21 +1,22 @@
 import Vue from "vue";
+import axios from "axios";
+import requests from "../admin/requests";
 
 const skill = {
   template: "#skill",
   props: {
-    skillName: String,
-    skillPercent: Number
+    skill: Object
   },
   methods: {
-      drawColoredCircle() {
-        const circle = this.$refs["color-circle"];
-        const dashArray = parseInt(
-          getComputedStyle(circle).getPropertyValue("stroke-dasharray")
-        );
-        const percent = (dashArray / 100) * (100 - this.skillPercent);
-    
-        circle.style.strokeDashoffset = percent;  
-      }
+    drawColoredCircle() {
+      const circle = this.$refs["color-circle"];
+      const dashArray = parseInt(
+        getComputedStyle(circle).getPropertyValue("stroke-dasharray")
+      );
+      const percent = (dashArray / 100) * (100 - this.skill.percent);
+
+      circle.style.strokeDashoffset = percent;
+    }
   },
   mounted() {
     this.drawColoredCircle();
@@ -28,7 +29,8 @@ const skillsRow = {
     skill
   },
   props: {
-    skill: Object
+    skills: Object,
+    category: Object
   }
 };
 
@@ -40,11 +42,24 @@ new Vue({
   },
   data() {
     return {
-      skills: {}
+      skills: {},
+      categories: {}
     };
   },
+  props: {
+    skills: Object
+  },
+  methods: {
+    filterSkillsCategoryId(categoryId) {
+      return this.skills.filter(skill => skill.category == categoryId);
+    }
+  },
   created() {
-    const data = require("../data/skills.json");
-    this.skills = data;
+    axios.get("/skills/119").then(response => {
+      this.skills = response.data;
+    }),
+      axios.get("/categories/119").then(response => {
+        this.categories = response.data;
+      });
   }
 });

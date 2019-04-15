@@ -1,5 +1,6 @@
 import Vue from "vue";
-
+import axios from "axios";
+import requests from "../admin/requests";
 
 Vue.component("reviews-component", {
   template: "#reviews",
@@ -44,16 +45,14 @@ Vue.component("reviews-component", {
 
       slider.style.transform = `translateX(-${this.strafe}px)`;
     }
-
-    
   },
   created() {
-    const reviews = require("../data/reviews.json");
-    this.reviews = this.arrWithRequiredImages(reviews);
-   
+    axios.get("/reviews/119").then(response => {
+      this.reviews = response.data;
+    });
   }
 });
-  
+
 const vue = new Vue();
 
 vue.$mount("#reviews-component");

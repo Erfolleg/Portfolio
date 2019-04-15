@@ -17,7 +17,7 @@ script(type="text/x-template")#reviews
                         .quote__author
                             .user.user--horizontal
                                 .user__avatar
-                                   img(:src="review['author-pic']").user__avatar-pic
+                                   img(:src="`https://webdev-api.loftschool.com/${review.photo}`").user__avatar-pic
                                 .user__data
-                                    .user__name {{review['author-name']}}
-                                    .user__occ {{review['author-occ']}}
+                                    .user__name {{review.author}}
+                                    .user__occ {{review.occ}}
