@@ -27,3 +27,6 @@ $ yarn имя_скрипта
 ```sh
  $ git subtree push --prefix dist origin gh-pages
 ```
+```sh
+запуск селениум сервер
+java -jar selenium-server-standalone-3.141.59.jar -host 127.0.0.1 -port 8000

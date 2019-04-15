@@ -1,51 +1,83 @@
 <template lang="pug">
     .login
         .login__content
-            form.login__form(@submit.prevent="login")
+            .authorization(v-if="showAuthForm == false")
+                a(href="/").login__form-close
+                button(@click="showAuthForm = true").btn_auth Авторизация
+            form.login__form(@submit.prevent="login" v-if="showAuthForm")
                 .login__form-title Авторизация
-                .login__form-close
+                a(href="#" @click="showAuthForm = false").login__form-close.login__form-close-form
                 .login__form-row
                     label.input
                         .input__title Логин
-                        .input_block
+                        .input_block(
+                            :class="{'error' : validation.firstError('user.name')}"
+                        )
                             .input_icon-user
                             input(
                                 @input="$emit('input', $event.target.value)"
                                 v-model="user.name"
                             ).input__elem
+                            .login-input__error
+                                error-tooltip(
+                                    :errorText="validation.firstError('user.name')"
+                                )
                 .login__form-row
                     label.input
                         .input__title Пароль
-                        .input_block
+                        .input_block(
+                            :class="{'error' : validation.firstError('user.password')}"
+                        )
                             .input_icon-key
                             input(
                                 @input="$emit('input', $event.target.value)"
                                 type="password"
                                 v-model="user.password"
                                 ).input__elem
+                            .login-input__error
+                                error-tooltip(
+                                    :errorText="validation.firstError('user.password')"
+                                )
                 .login__form-button
                     button.login__form-btn(type="submit") Отправить
 </template>
 
 <script>
 import $axios from "@/requests";
+import { Validator } from "simple-vue-validator";
 export default {
+    mixins: [require("simple-vue-validator").mixin],
+    validators: {
+    "user.name": value => {
+      return Validator.value(value).required("Введите имя пользователя");
+    },
+    "user.password": value => {
+      return Validator.value(value).required("Введите пароль");
+    }
+  },
     components: {
-
+        errorTooltip: () => import("components/errorTooltip.vue")
     },
     data() {
         return {
             user: {
                 name: "hisaev032019",
                 password: "392707hisaev"
-            }
+            },
+            showAuthForm: false
         }
     },
     props: {
+        value: String | Number,
+        errorText: {
+            type: String,
+            default: ""
+        },
         value: String | Number
     },
     methods: {
         async login() {
+            if ((await this.$validate()) === false) return;
             try {
                 const { 
                     data: { token }
@@ -96,7 +128,8 @@ export default {
     padding: 65px;
     background: #fff;
     z-index: 10;
-    width: 563px;
+    min-width: 400px;
+    position: relative;
     
     @include phones {
         height: 100%;
@@ -104,8 +137,30 @@ export default {
     }
 }
 
+.btn_auth {
+  width: 347px;
+  height: 80px;
+  border-radius: 40px 0;
+  background-color: #ffffff;
+  background-image: linear-gradient(to right, #ad00ed 0%, #5500f2 100%);
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 7%;
+  @include phones {
+    width: 259px;
+    height: 60px;
+    border-radius: 30px 0;
+  }
+}
+
 .login__form {
     position: relative;
+    width: 350px;
     @include phones {
         display: flex;
         flex-direction: column;
@@ -123,11 +178,15 @@ export default {
 
     &-close {
         position: absolute;
-        right: -20px;
-        top: -30px;
+        right: 20px;
+        top: 20px;
         width: 20px;
         height: 20px;
         cursor: pointer;
+        &.login__form-close-form {
+             right: -20px;
+            top: -30px;
+        }
 
         &:before, &:after {
             position: absolute;
@@ -187,6 +246,11 @@ export default {
 .input_block {
     display: flex;
     position: relative;
+    &.error {
+        .login-input__error {
+            display: block;
+        }
+    }
 }
 .input_icon {
     &-user {
@@ -195,6 +259,7 @@ export default {
         height: 30px;
         position: absolute;
         top: 10px;
+        
     }
     &-key {
         background-image: svg-load("key.svg", fill=#cfd2d7);
@@ -203,6 +268,14 @@ export default {
         position: absolute;
         top: 10px;
     }
+}
+
+.login-input__error {
+    display: none;
+    position: absolute;
+    top: 100%;
+    z-index: 100;
+    opacity: 0.9;
 }
 
 </style>
