@@ -14,7 +14,7 @@
                             :class="{'error' : validation.firstError('user.name')}"
                         )
                             .input_icon-user
-                            input(
+                            input#username(
                                 @input="$emit('input', $event.target.value)"
                                 v-model="user.name"
                             ).input__elem
@@ -29,7 +29,7 @@
                             :class="{'error' : validation.firstError('user.password')}"
                         )
                             .input_icon-key
-                            input(
+                            input#password(
                                 @input="$emit('input', $event.target.value)"
                                 type="password"
                                 v-model="user.password"
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mapMutations  } from 'vuex';
 import $axios from "@/requests";
 import { Validator } from "simple-vue-validator";
 export default {
@@ -76,6 +77,7 @@ export default {
         value: String | Number
     },
     methods: {
+        ...mapMutations('tooltip', ['SHOW_TOOLTIP']),
         async login() {
             if ((await this.$validate()) === false) return;
             try {
@@ -87,7 +89,11 @@ export default {
                 $axios.defaults.headers['Authorization'] = `Bearer ${token}`;
                 this.$router.replace('/');
             } catch (error) {
-                alert(error.message)
+                console.error(error.message);
+                 this['SHOW_TOOLTIP']({
+                    type: 'error',
+                    text: 'Неправильный логин или пароль'
+                });
             }
             
         }

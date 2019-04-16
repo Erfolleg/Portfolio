@@ -1,6 +1,5 @@
 import Vue from "vue";
 import axios from "axios";
-import requests from "../admin/requests";
 
 const skill = {
   template: "#skill",
@@ -29,7 +28,7 @@ const skillsRow = {
     skill
   },
   props: {
-    skills: Object,
+    skills: Array,
     category: Object
   }
 };
@@ -42,23 +41,20 @@ new Vue({
   },
   data() {
     return {
-      skills: {},
-      categories: {}
+      skills: [],
+      categories: []
     };
-  },
-  props: {
-    skills: Object
   },
   methods: {
     filterSkillsCategoryId(categoryId) {
-      return this.skills.filter(skill => skill.category == categoryId);
+      return this.skills.filter(skill => skill.category === categoryId);
     }
   },
   created() {
-    axios.get("/skills/119").then(response => {
+    axios.get("https://webdev-api.loftschool.com/skills/119").then(response => {
       this.skills = response.data;
     }),
-      axios.get("/categories/119").then(response => {
+      axios.get("https://webdev-api.loftschool.com/categories/119").then(response => {
         this.categories = response.data;
       });
   }

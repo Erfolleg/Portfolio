@@ -28,6 +28,7 @@ export default {
         return response;
       } catch (error) {
         alert(error.message)
+        
       }
     },
     logout({ commit }) {

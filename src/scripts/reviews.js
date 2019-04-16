@@ -1,6 +1,5 @@
 import Vue from "vue";
 import axios from "axios";
-import requests from "../admin/requests";
 
 Vue.component("reviews-component", {
   template: "#reviews",
@@ -47,7 +46,7 @@ Vue.component("reviews-component", {
     }
   },
   created() {
-    axios.get("/reviews/119").then(response => {
+    axios.get("https://webdev-api.loftschool.com/reviews/119").then(response => {
       this.reviews = response.data;
     });
   }
