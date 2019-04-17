@@ -28,12 +28,13 @@ export default {
         return response;
       } catch (error) {
         alert(error.message)
+        
       }
     },
     logout({ commit }) {
       commit("CLEAR_USER");
       localStorage.removeItem('token');
-      location.href = "/Portfolio";
+      location.href = "/admin";
     }
   }
 };
